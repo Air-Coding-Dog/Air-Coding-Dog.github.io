@@ -7,16 +7,20 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2023/index.html">
+<meta name="description" content="第一天 创建python的虚拟环境   123456789# 创建一个venv虚拟环境python3  -m venv venv# 激活虚拟环境linux: source &#x2F;venv&#x2F;bin&#x2F;activeWindows: venv\Scrpit\active# 关闭虚拟环境deactive   安装Flask  123456789 pip install Flask#  安装完成后进行检查pip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flask-blog">
+<meta property="og:url" content="http://example.com/2023/10/26/flask-blog/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一天 创建python的虚拟环境   123456789# 创建一个venv虚拟环境python3  -m venv venv# 激活虚拟环境linux: source &#x2F;venv&#x2F;bin&#x2F;activeWindows: venv\Scrpit\active# 关闭虚拟环境deactive   安装Flask  123456789 pip install Flask#  安装完成后进行检查pip">
 <meta property="og:locale">
+<meta property="article:published_time" content="2023-10-26T00:18:03.000Z">
+<meta property="article:modified_time" content="2023-10-26T02:41:41.801Z">
 <meta property="article:author" content="Coding-dog">
 <meta name="twitter:card" content="summary">
 
 
-<title >Hexo</title>
+<title >flask-blog</title>
 
 <!-- Favicon -->
 
@@ -55,7 +59,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"Coding-dog","root":"/","typed_text":null,"theme_version":"2.1.0-beta.2","theme":{"switch":true,"default":"auto"},"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","appleTouchIcon":null,"webmanifest":null,"visibilitychange":true,"hidden":"failure.ico","showText":"在这儿！嘻嘻！","hideText":"记得回家哦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":false,"isHome":false,"postUpdate":"2023-10-26 10:42:47"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-10-26 10:41:41"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.1.0-beta.2" id="trm-switch-style">
@@ -178,7 +182,8 @@
             <!-- top bar end -->
 
             <!-- body -->
-            <div class="trm-content-start">
+            
+<div class="trm-content-start">
     <!-- banner -->
     <div class="trm-banner">
     
@@ -199,10 +204,10 @@
                     <!-- banner title -->
                     <div class="trm-banner-text ">
                         <div class="trm-label trm-mb-20">
-                            The article archive
+                            NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            云间连下榻，<br>天上接行杯。
+                            flask-blog
                         </h1>
 
                         
@@ -212,7 +217,7 @@
                                 </li>
                                 <li>
                                     <span>
-                                        archives
+                                        2023
                                     </span>
                                 </li>
                             </ul>
@@ -298,151 +303,125 @@
             
             <div id="page-content" class="col-lg-8">
                 <div class="trm-content" id="trm-content">
-                    <div class="row">
-    <div class="col-lg-12">
-        <div class="trm-card">
-            <div style="padding: 0 20px;">
-                
-                    <ul class="row trm-list" style="margin-bottom: 0px;"><li class="col-lg-4 trm-list-item" style="margin: 6px 0;"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">（4）</span></li></ul>
-                
-            </div>
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            10/26
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            08:18
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            Coding-dog
         </div>
     </div>
 </div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="第一天"><a href="#第一天" class="headerlink" title="第一天"></a>第一天</h1><ol>
+<li><p>创建python的虚拟环境  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个venv虚拟环境</span></span><br><span class="line">python3  -m venv venv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 激活虚拟环境</span></span><br><span class="line">linux: source /venv/<span class="built_in">bin</span>/active</span><br><span class="line">Windows: venv\Scrpit\active</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭虚拟环境</span></span><br><span class="line">deactive</span><br></pre></td></tr></table></figure>
 
-<!-- history -->
+</li>
+<li><p>安装Flask</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> pip install Flask</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#  安装完成后进行检查</span></span><br><span class="line"></span><br><span class="line">pip <span class="built_in">list</span> 查看是否有Flask</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把所有的依赖导入一个txt文件</span></span><br><span class="line">pip freeze &gt; request.txt</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>demo1 尝试使用flask</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line">app=Flask(__name__)  <span class="comment"># 初始化Flask框架，必须要初始化一个name参数</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)  </span><span class="comment"># 告诉flask 那个url绑定函数  / 就是根目录下绑定函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello_word</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&lt;p&gt;hello&lt;/p&gt;&#x27;</span>   <span class="comment"># 返回类型，默认为html，浏览器自动识别传入的html元素</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:  <span class="comment"># __main__是用来判断是否是直接运行这个文件，还是被引用了</span></span><br><span class="line">    app.run()  <span class="comment"># app是一个Flask的对象，自带run方法</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<div class="row">
+
+<p>创建一个合适的目录结构，方便以后进行更新扩展：</p>
+<ol>
+<li>创建一个项目目录   存放的是入口文件和一些配置文件，以及项目中用的的公共部分，全部放在项目目录中。</li>
+<li>创建应用目录APP ：<ul>
+<li>不同的模块放入里面</li>
+<li>此项目三个模块 ：<ul>
+<li>认证、权限管理模块</li>
+<li>主模块blog</li>
+<li>后台管理 admin</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>创建一个入口文件，导入上面所需要的包，运行就好了</li>
+</ol>
+<p>插入一个小知识：如果想让一个文件夹成为一个python的包，需要有一个__init__.py的文件</p>
+
+</article>
+    
+    <div class="trm-reward">
+        
+            <span class="trm-reward-btn trm-glow" onclick='var qr = document.getElementById("qr"); qr.style.display = (qr.style.display === "none") ? "block" : "none";'>
+                <i class="iconfont fas fa-hand-holding-usd"></i>
+            </span>
+        
+        <p class="trm-reward-comment">觉得文章还不错，给个奖励吧。谢谢您！</p>
+        <div id="qr" style="display:none;">
+            
+                <div style="display:inline-block">
+                    <a rel="noopener noreferrer" href='/img/pay.jpg' target='_blank' >
+                       <img src="/img/pay.jpg" alt="wechat-pay" loading="lazy">
+                    </a>
+                    <p>wechat-pay</p>
+                </div>
+            
+        </div>
+    </div>
+
+    
+
+</div>
+<div id="post-next-prev" class="row">
     <div class="col-lg-12">
         <!-- title -->
         <h5 class="trm-title-with-divider">
-            
-                2023 年的归档
-            
-            <span data-number="01"></span>
+            其他文章
+            <span data-number="02"></span>
         </h5>
     </div>
-    <div class="col-lg-12">
-        <!-- timeline -->
-        <div class="trm-timeline">
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2023/10/24/%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B/" class="trm-cover-frame trm-anima-link">
             
-            <div class="trm-timeline-item trm-scroll-animation">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/10/26/flask-blog/" class="trm-anima-link">
-                                        flask-blog
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">10/26</li>
-                                        <li class="trm-accent-color">08:18</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    未分类
+                </a>
             </div>
-            
-            <div class="trm-timeline-item trm-scroll-animation">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/10/24/%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B/" class="trm-anima-link">
-                                        安全编程
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">10/24</li>
-                                        <li class="trm-accent-color">08:49</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
-            </div>
-            
-            <div class="trm-timeline-item trm-scroll-animation">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/10/18/My-New-Post/" class="trm-anima-link">
-                                        My New Post
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">10/18</li>
-                                        <li class="trm-accent-color">23:22</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
-            </div>
-            
-            <div class="trm-timeline-item trm-scroll-animation">
-                <div class="trm-timeline-mark-light"></div>
-                <div class="trm-timeline-mark"></div>
-                <div class="trm-a trm-timeline-content more">
-                    
-                        <div class="trm-card-header">
-                            <div class="trm-left-side">
-                                <h6>
-                                    <a href="/2023/10/18/hello-world/" class="trm-anima-link">
-                                        Hello World
-                                    </a>
-                                </h6>
-                                <div class="trm-text-sm trm-accent-color trm-mt-15">
-                                    <ul class="trm-card-data trm-label ">
-                                        <li class="trm-accent-color">10/18</li>
-                                        <li class="trm-accent-color">23:02</li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                </div>
-            </div>
-            
+            <h5>
+                <a href="/2023/10/24/%E5%AE%89%E5%85%A8%E7%BC%96%E7%A8%8B/" class="trm-anima-link">
+                    安全编程
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/10/24</li>
+                <li>08:49</li>
+                
+                
+            </ul>
         </div>
-        <!-- timeline end -->
     </div>
 </div>
+    
+</div>
 
-<!-- history end -->
-
-
-    <div class="trm-pagination">
-        <span class="page-number current">1</span>
-    </div>
-
-
+    
 
 
 
@@ -493,6 +472,10 @@
         </div>
     
     
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
     
         <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
             <i class="iconfont fas fa-arrows-alt-h"></i>
@@ -528,6 +511,10 @@
     
 
     <!-- 评论插件 -->
+    
+        
+
+        
     
 
 
