@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="FastAPI1uvicorn main:app --reload  第一天12345678910111213141516171819from fastapi import APIRouter # 导入了API的路由movie&#x3D;APIRouter(tags&#x3D;[&amp;#x27;电影相关&amp;#x27;])@movie.get(&amp;#x27;&#x2F;movies&amp;#x27;,summary&#x3D;&amp;#x27;电影列表&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FastApi">
+<meta property="og:url" content="http://example.com/2023/11/14/FastAPI/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="FastAPI1uvicorn main:app --reload  第一天12345678910111213141516171819from fastapi import APIRouter # 导入了API的路由movie&#x3D;APIRouter(tags&#x3D;[&amp;#x27;电影相关&amp;#x27;])@movie.get(&amp;#x27;&#x2F;movies&amp;#x27;,summary&#x3D;&amp;#x27;电影列表&amp;#x">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="article:published_time" content="2023-11-14T12:38:00.000Z">
+<meta property="article:modified_time" content="2023-11-14T12:39:01.072Z">
+<meta property="article:author" content="Coding-dog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
+
+
+<title >FastApi</title>
+
+<!-- Favicon -->
+
+    <link href='/img/favicon.svg?v=2.1.0-beta.2' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/img/favicon.svg?v=2.1.0-beta.2' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"Coding-dog","root":"/","typed_text":null,"theme_version":"2.1.0-beta.2","theme":{"switch":true,"default":"auto"},"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","appleTouchIcon":null,"webmanifest":null,"visibilitychange":true,"hidden":"failure.ico","showText":"在这儿！嘻嘻！","hideText":"记得回家哦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-11-14 20:39:01"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.1.0-beta.2" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/img/favicon.svg">
+    
+    
+        <div class="trm-logo-text">
+            Coding-Dog<span>-Air</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            FastApi
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2023
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div id="page-sidebar" class="col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/img/avatar.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        Air-Coding-Dog
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                Residence:
+            </div>
+            <div class="trm-label trm-label-light">
+                Mars
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:fanntasticperson1994@outlook.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div id="page-content" class="col-lg-8">
+                <div class="trm-content" id="trm-content">
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            11/14
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            20:38
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            Coding-dog
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="FastAPI"><a href="#FastAPI" class="headerlink" title="FastAPI"></a>FastAPI</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uvicorn main:app --reload</span><br></pre></td></tr></table></figure>
+
+<h2 id="第一天"><a href="#第一天" class="headerlink" title="第一天"></a>第一天</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> APIRouter <span class="comment"># 导入了API的路由</span></span><br><span class="line"></span><br><span class="line">movie=APIRouter(tags=[<span class="string">&#x27;电影相关&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="meta">@movie.get(<span class="params"><span class="string">&#x27;/movies&#x27;</span>,summary=<span class="string">&#x27;电影列表&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">movie_list</span>():</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@movie.post(<span class="params"><span class="string">&#x27;/movies&#x27;</span>,summary=<span class="string">&#x27;新增电影&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">movie_create</span>():</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@movie.put(<span class="params"><span class="string">&#x27;/movies&#x27;</span>,summary=<span class="string">&#x27;编辑电影&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">movie_update</span>():</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@movie.delete(<span class="params"><span class="string">&#x27;/movies&#x27;</span>,summary=<span class="string">&#x27;删除电影&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">movie_delete</span>():</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>summary&#x3D;‘‘ 参数是一个内部描述，并不体现在web页面上</li>
+</ul>
+<p>学习如何设置路由，并且查看</p>
+<ol>
+<li><p>设置网站的目录结构</p>
+</li>
+<li><p><img src="/img/typora-user-images/image-20231028130607685.png" alt="image-20231028130607685" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+</li>
+<li><pre><code class="py">from fastapi import APIRouter
+
+login=APIRouter(tags=[&#39;认证相关&#39;])
+
+@login.post(&#39;/login&#39;,summary=&#39;登陆&#39;)
+async def user_login():
+    pass
+
+先导入一个包
+再创建一个实例化的对象，并且给定标签（作用）
+然后给出对应函数的路由和方法
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"></span><br><span class="line">## orm 促使程序员专注于数据库的操作，不用直接编写sql语句</span><br><span class="line"></span><br><span class="line">python导包</span><br><span class="line"></span><br><span class="line">依次是：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ol>
+<ul>
+<li>官方包</li>
+<li>三方包</li>
+<li>自己定义的包<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 看了这么多的评论，问答，视频，发现学习fastapi急不得，脚踏实地，官方文档一步步走，满满的历练自己，可以的</span><br><span class="line"></span><br><span class="line">## 协程</span><br><span class="line"></span><br><span class="line">利用async和await写异步代码</span><br><span class="line"></span><br><span class="line"># one step ---Fast</span><br><span class="line"></span><br><span class="line">不同的http方法： 每一个HTTP方法都称为一个操作</span><br><span class="line"></span><br><span class="line">在开发 API 时，你通常使用特定的 HTTP 方法去执行特定的行为。</span><br><span class="line"></span><br><span class="line">通常使用：</span><br><span class="line"></span><br><span class="line">- `POST`：创建数据。</span><br><span class="line">- `GET`：读取数据。</span><br><span class="line">- `PUT`：更新数据。</span><br><span class="line">- `DELETE`：删除数据。</span><br><span class="line"></span><br><span class="line">`@something` 语法在 Python 中被称为「装饰器」。</span><br><span class="line"></span><br><span class="line">在我们的例子中，这个装饰器告诉 **FastAPI** 位于其下方的函数对应着**路径** `/` 加上 `get` **操作**。</span><br><span class="line"></span><br><span class="line">它是一个「**路径操作装饰器**」。</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">@app.get(&quot;/&quot;) # 路径操作装饰器</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><code>@app.get(&quot;/&quot;)</code> 告诉 <strong>FastAPI</strong> 在它下方的函数负责处理如下访问请求：</p>
+<ul>
+<li>请求路径为 <code>/</code></li>
+<li>使用 <code>get</code> 操作</li>
+</ul>
+<p>装饰器的作用主要有两个点：</p>
+<ol>
+<li>路由</li>
+<li>http操作方法</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">root</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello World&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2个点：</p>
+<ol>
+<li>使用get 并且访问url的根目录即&#x2F; 执行root函数</li>
+<li>返回内容 返回 dict str int list 和一些其他模型 Pydantic 模型</li>
+</ol>
+<p>还可以有其他的路径操作装饰器：</p>
+<ul>
+<li><code>@app.post()</code></li>
+<li><code>@app.put()</code></li>
+<li><code>@app.delete()</code></li>
+</ul>
+<hr>
+<h2 id="路径参数"><a href="#路径参数" class="headerlink" title="路径参数"></a>路径参数</h2><p>可以对函数传参</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_item</span>(<span class="params">item_id</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以将路径中的<code>&#123;item_id&#125;</code>作为一个参数进行传参，传递给read_item函数中</p>
+<p>注意 <strong>路由中给出的参数名必须要与函数中的参数名保持一致</strong></p>
+<p>除此之外，还可以对接受到的参数进行类型限制</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_item</span>(<span class="params">item_id: <span class="built_in">int</span></span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br></pre></td></tr></table></figure>
+
+<p>限定参数<code>item_id</code>是int类型的 如果是其他类型的，函数进行数据校验，得到一个http错误</p>
+<p>eg：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;detail&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;loc&quot;: [</span><br><span class="line">                &quot;path&quot;,</span><br><span class="line">                &quot;item_id&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;msg&quot;: &quot;value is not a valid integer&quot;,</span><br><span class="line">            &quot;type&quot;: &quot;type_error.integer&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>FastApi有两个文档</p>
+<ol>
+<li>docs</li>
+<li>redoc</li>
+</ol>
+<h3 id="pydantic-数据校验"><a href="#pydantic-数据校验" class="headerlink" title="pydantic 数据校验"></a>pydantic 数据校验</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/users/me&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_user_me</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;user_id&quot;</span>: <span class="string">&quot;the current user&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/users/&#123;user_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_user</span>(<span class="params">user_id: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;user_id&quot;</span>: user_id&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>@app.get(&quot;/users/me&quot;)</code> 一定是比 <code>@app.get(&quot;/users/&#123;user_id&#125;&quot;)</code>靠前，为了避免出现<code>/users/me</code>时，me被误作为user_id进行传参。</p>
+<p>查询参数要比路径参数靠前，不然查询参数如果设置了默认值是不会触发的</p>
+<p><strong>固定目录比传参目录一定要靠前</strong></p>
+<p>参数也可以是枚举类型的</p>
+<p>复习python中的枚举类型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ModelName</span>(<span class="built_in">str</span>, Enum):</span><br><span class="line">    alexnet = <span class="string">&quot;alexnet&quot;</span></span><br><span class="line">    resnet = <span class="string">&quot;resnet&quot;</span></span><br><span class="line">    lenet = <span class="string">&quot;lenet&quot;</span></span><br><span class="line">    </span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/models/&#123;model_name&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">get_model</span>(<span class="params">model_name: ModelName</span>):  </span><br><span class="line">    <span class="keyword">if</span> model_name <span class="keyword">is</span> ModelName.alexnet:</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&quot;model_name&quot;</span>: model_name, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Deep Learning FTW!&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> model_name.value == <span class="string">&quot;lenet&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&quot;model_name&quot;</span>: model_name, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;LeCNN all the images&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;model_name&quot;</span>: model_name, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Have some residuals&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>async def get_model(model_name: ModelName):</code> 这个异步函数，限定了参数一定是Modelname中的枚举变量 ，根据参数与枚举变量进行对比，最后确定返回值的内容。</p>
+<p>枚举类.属性名 得到这个枚举类型的值</p>
+<h3 id="路径参数-1"><a href="#路径参数-1" class="headerlink" title="路径参数"></a><strong>路径参数</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/files/&#123;file_path:path&#125;&quot;</span></span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>参数的名称为 <code>file_path</code>，<strong>结尾部分的 <code>:path</code> 说明该参数应匹配任意的<em>路径</em></strong>。</p>
+<p>路径变量，需要在装饰器变量后面加上:path</p>
+<p>tip：</p>
+<p>可能会需要参数包含 <code>/home/johndoe/myfile.txt</code>，以斜杠（<code>/</code>）开头。</p>
+<p>在这种情况下，URL 将会是 <code>/files//home/johndoe/myfile.txt</code>，在<code>files</code> 和 <code>home</code> 之间有一个双斜杠（<code>//</code>）。</p>
+<p>eg</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&#x27;/file/&#123;file_path:path&#125;&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">readfile</span>(<span class="params">file_path:<span class="built_in">str</span></span>):</span><br><span class="line">    a=<span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file_path) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> f:</span><br><span class="line">            a=a+row</span><br><span class="line">        <span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/typora-user-images/image-20231030171120416.png" alt="image-20231030171120416" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>通过传参的方式，读取到一个文件中的内容</p>
+<hr>
+<h2 id="查询参数-：-URL-的-？-之后，并以-符号分隔"><a href="#查询参数-：-URL-的-？-之后，并以-符号分隔" class="headerlink" title="查询参数 ： URL 的 ？ 之后，并以 &amp; 符号分隔"></a><strong>查询参数 ： URL 的 <code>？</code> 之后，并以 <code>&amp;</code> 符号分隔</strong></h2><p>格式**<code>参数名：类型名[=默认值] []中的值可以省略，作为函数形参，省略后没有默认值</code> **</p>
+<p>声明不属于路径参数的其他函数参数时，它们将被自动解释为”查询字符串”参数</p>
+<p><strong>查询参数不是路径固定的一部分，查询参数是可选的</strong>，并且可以设置默认值</p>
+<p>eg：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&#x27;/user&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">show_user</span>(<span class="params"><span class="built_in">id</span> :<span class="built_in">int</span>=<span class="number">0</span></span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">id</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/typora-user-images/image-20231030172309558.png" alt="image-20231030172309558" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p><img src="/img/typora-user-images/image-20231030172322367.png" alt="image-20231030172322367" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p><img src="/img/typora-user-images/image-20231030172335616.png" alt="image-20231030172335616" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>设置了默认值，所以&#x2F;user与&#x2F;user?id&#x3D;0是一样的效果</p>
+<p>路径参数需要写入装饰器中，查询参数只需要改变函数的参数即可。</p>
+<h4 id="默认参数：-q是一个默认参数-是一个int类型，不赋值就为None"><a href="#默认参数：-q是一个默认参数-是一个int类型，不赋值就为None" class="headerlink" title="默认参数： q是一个默认参数 是一个int类型，不赋值就为None"></a>默认参数： <strong>q是一个默认参数</strong> 是一个int类型，不赋值就为None</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&#x27;/user&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">show_user</span>(<span class="params"><span class="built_in">id</span> :<span class="built_in">int</span>,q: <span class="built_in">int</span>=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">id</span>,q</span><br></pre></td></tr></table></figure>
+
+<h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&#x27;/item/&#123;item_id&#125;&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_item</span>(<span class="params">item_id:<span class="built_in">str</span>,q:<span class="type">Union</span>[<span class="built_in">str</span>,<span class="literal">None</span>]=<span class="literal">None</span>,short:<span class="built_in">bool</span>=<span class="literal">False</span></span>):</span><br><span class="line">    item=&#123;<span class="string">&#x27;item_id&#x27;</span>:item_id&#125;</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        item.update(&#123;<span class="string">&#x27;q&#x27;</span>:q&#125;)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> short:</span><br><span class="line">        item.update(&#123;</span><br><span class="line">            <span class="string">&#x27;description&#x27;</span>:<span class="string">&#x27;This is an amazing item that has a long description&#x27;</span></span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+
+<p>q:Union[str,None]&#x3D;None 这个是一个真正的可选参数，q有没有均可，没有的话就被设置为了None,有的话可以设置为str。在Union[str,None,int]也是可以的，q就可以是int类型的</p>
+<h4 id="必选参数：不带默认值的参数，路径参数是必选参数。"><a href="#必选参数：不带默认值的参数，路径参数是必选参数。" class="headerlink" title="必选参数：不带默认值的参数，路径参数是必选参数。"></a>必选参数：不带默认值的参数，路径参数是必选参数。</h4><p>FastApi解析bool类型时，会把常用的字符串解析为True</p>
+<p>eg ：true True yes 1</p>
+<p>一下字符串解析为No</p>
+<p>eg：False false no 0</p>
+<p>eg：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&#x27;/item/&#123;item_id&#125;&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_item</span>(<span class="params">item_id:<span class="built_in">str</span>,q:<span class="type">Union</span>[<span class="built_in">str</span>,<span class="literal">None</span>]=<span class="literal">None</span>,short:<span class="built_in">bool</span>=<span class="literal">False</span></span>):</span><br><span class="line">    item=&#123;<span class="string">&#x27;item_id&#x27;</span>:item_id&#125;</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        item.update(&#123;<span class="string">&#x27;q&#x27;</span>:q&#125;)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> short:</span><br><span class="line">        item.update(&#123;</span><br><span class="line">            <span class="string">&#x27;description&#x27;</span>:<span class="string">&#x27;This is an amazing item that has a long description&#x27;</span></span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/typora-user-images/image-20231031161729240.png" alt="image-20231031161729240" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p><img src="/img/typora-user-images/image-20231031161744766.png" alt="image-20231031161744766" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p><code>Union[str,None]</code>表示这个变量可以是字符串或者None。Union[]表示可以是里面的任意一种类型。</p>
+<h4 id="多个路径参数和查询参数"><a href="#多个路径参数和查询参数" class="headerlink" title="多个路径参数和查询参数"></a>多个路径参数和查询参数</h4><p>不需要以任何特定的顺序来声明，<strong>FastAPI</strong> 能够正确识别。</p>
+<h2 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h2><p>client——&gt; API</p>
+<p>响应体</p>
+<p>API——-&gt;Client</p>
+<p>&nbsp;</p>
+<p>使用pydantic模型来声明请求体    不能使用Get操作发送请求体</p>
+<p>使用<code>POST</code>（较常见）、<code>PUT</code>、<code>DELETE</code> 或 <code>PATCH</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Item</span>(<span class="title class_ inherited__">BaseModel</span>):</span><br><span class="line">    name:<span class="built_in">str</span></span><br><span class="line">    describe: <span class="type">Union</span>[<span class="built_in">str</span>,<span class="literal">None</span>]=<span class="literal">None</span></span><br><span class="line">    price: <span class="built_in">float</span></span><br><span class="line">    tax: <span class="type">Union</span>[<span class="built_in">float</span>,<span class="literal">None</span>]=<span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">create_item</span>(<span class="params">item: Item</span>):</span><br><span class="line">    item_dict = item.model_dump()</span><br><span class="line">    <span class="keyword">if</span> item.tax:</span><br><span class="line">        price_with_tax = item.price + item.tax</span><br><span class="line">        item_dict.update(&#123;<span class="string">&quot;price_with_tax&quot;</span>: price_with_tax&#125;)</span><br><span class="line">    <span class="keyword">return</span> item_dict</span><br></pre></td></tr></table></figure>
+
+<p>需要自己定义post的数据类型，有可以省略的参数，也有不可以省略的参数。<br><img src="/img/_resources6b48e8341b695d9ff9a2c262b30b3a56.png" alt="6b48e8341b695d9ff9a2c262b30b3a56.png" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>通过class 数据体名(BaseModel) 通过继承pydantic来实现自己的数据包</p>
+<p>函数参数将依次按如下规则进行识别：</p>
+<ul>
+<li>如果在路径中也声明了该参数，它将被用作路径参数。</li>
+<li>如果参数属于单一类型（比如 int、float、str、bool 等）它将被解释为查询参数。</li>
+<li>如果参数的类型被声明为一个 Pydantic 模型，它将被解释为请求体。</li>
+</ul>
+<p>eg</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Item</span>(<span class="title class_ inherited__">BaseModel</span>):</span><br><span class="line">  name:<span class="built_in">str</span></span><br><span class="line">  describe: <span class="type">Union</span>[<span class="built_in">str</span>,<span class="literal">None</span>]=<span class="literal">None</span></span><br><span class="line">  price: <span class="built_in">float</span></span><br><span class="line">  tax: <span class="type">Union</span>[<span class="built_in">float</span>,<span class="literal">None</span>]=<span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.put(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">create_item</span>(<span class="params">item_id: <span class="built_in">int</span>, item: Item, q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = <span class="literal">None</span></span>):</span><br><span class="line">  result = &#123;<span class="string">&quot;item_id&quot;</span>: item_id, **item.model_dump()&#125;   <span class="comment"># model_dump 把对象转化为字典对象</span></span><br><span class="line">  <span class="keyword">if</span> q:</span><br><span class="line">      result.update(&#123;<span class="string">&quot;q&quot;</span>: q&#125;)</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个例子中，item_id是路径参数，q是str类型的可选参数，是单一参数。<br><strong>item参数是Item类型的，是Pydantic 模型，它将被解释为请求体</strong><br>所以Fastapi会自动识别pydantic模型，并且把这个模型识别为请求体</p>
+<p><img src="/img/_resources26240453a974cf4bb2b1599ba62b2a2a.png" alt="26240453a974cf4bb2b1599ba62b2a2a.png" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<h2 id="查询参数和字符串校验"><a href="#查询参数和字符串校验" class="headerlink" title="查询参数和字符串校验"></a>查询参数和字符串校验</h2><h4 id="额外的校验-从fastapi导入query"><a href="#额外的校验-从fastapi导入query" class="headerlink" title="额外的校验 从fastapi导入query"></a>额外的校验 从fastapi导入query</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI,Query</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items_2/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params">q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = Query(<span class="params">default=<span class="literal">None</span>, max_length=<span class="number">50</span></span>)</span>):</span><br><span class="line">  results = &#123;<span class="string">&quot;items&quot;</span>: [&#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Foo&quot;</span>&#125;, &#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Bar&quot;</span>&#125;]&#125;</span><br><span class="line">  <span class="keyword">if</span> q:</span><br><span class="line">      results.update(&#123;<span class="string">&quot;q&quot;</span>: q&#125;)</span><br><span class="line">  <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure>
+
+<p>使用Query设置了默认值，和最大的长度等额外的限制</p>
+<p>可以添加正则表达式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Query</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params"></span></span><br><span class="line"><span class="params">    q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = Query(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="params">        default=<span class="literal">None</span>, min_length=<span class="number">3</span>, max_length=<span class="number">50</span>, pattern=<span class="string">&quot;^fixedquery$&quot;</span></span></span></span><br><span class="line"><span class="params"><span class="params">    </span>),</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    results = &#123;<span class="string">&quot;items&quot;</span>: [&#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Foo&quot;</span>&#125;, &#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Bar&quot;</span>&#125;]&#125;</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        results.update(&#123;<span class="string">&quot;q&quot;</span>: q&#125;)</span><br><span class="line">    <span class="keyword">return</span> results</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>^：以该符号之后的字符开头，符号之前没有字符。</li>
+<li>fixedquery: 值精确地等于 fixedquery。</li>
+<li>$: 到此结束，在 fixedquery 之后没有更多字符。</li>
+</ul>
+<p><code>pattern=&quot;^fixedquery$&quot;</code> 表示q这个参数，只能是fixedquery这个字符串。可以学习fastAPi的正则表达式</p>
+<h4 id="使用Query声明为一个必要参数，不能使用default参数"><a href="#使用Query声明为一个必要参数，不能使用default参数" class="headerlink" title="使用Query声明为一个必要参数，不能使用default参数"></a>使用Query声明为一个必要参数，不能使用default参数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = Query(default=<span class="literal">None</span>, min_length=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<p>此时q是由default参数，不是一个必选参数</p>
+<p>不需要申请default参数就是必选参数</p>
+<p>也可以使用default&#x3D;…来声明一个必选参数，即使这个参数的默认值是None也是可以的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Query</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params">q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = Query(<span class="params">default=..., min_length=<span class="number">3</span></span>)</span>):</span><br><span class="line">    results = &#123;<span class="string">&quot;items&quot;</span>: [&#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Foo&quot;</span>&#125;, &#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Bar&quot;</span>&#125;]&#125;</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        results.update(&#123;<span class="string">&quot;q&quot;</span>: q&#125;)</span><br><span class="line">    <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure>
+
+<p>声明一个可多次出现的参数q,可以用一个列表去接受参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Query</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params">q: <span class="type">Union</span>[<span class="type">List</span>[<span class="built_in">str</span>], <span class="literal">None</span>] = Query(<span class="params">default=<span class="literal">None</span></span>)</span>):</span><br><span class="line">    query_items = &#123;<span class="string">&quot;q&quot;</span>: q&#125;</span><br><span class="line">    <span class="keyword">return</span> query_items</span><br></pre></td></tr></table></figure>
+
+<p>List[str] 与 list list[str] 会检测参数列表，如果不是str则会出错，list[int]的效果会更明显</p>
+<p>list则不会检测数据的类型，任何类型均可。</p>
+<p><strong>使用了list[int]</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items_3/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params">q: <span class="type">Union</span>[<span class="built_in">list</span>[<span class="built_in">int</span>], <span class="literal">None</span>] = Query(<span class="params">default=[<span class="number">1</span>, <span class="number">2</span>]</span>)</span>):</span><br><span class="line">    query_items = &#123;<span class="string">&quot;q&quot;</span>: q&#125;</span><br><span class="line">    <span class="keyword">return</span> query_items</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用了list</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items_3/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params">q: <span class="type">Union</span>[<span class="built_in">list</span>, <span class="literal">None</span>] = Query(<span class="params">default=<span class="literal">None</span></span>)</span>):</span><br><span class="line">    query_items = &#123;<span class="string">&quot;q&quot;</span>: q&#125;</span><br><span class="line">    <span class="keyword">return</span> query_items</span><br></pre></td></tr></table></figure>
+
+<p><strong>list不需要加[] 加上类型的话需要加上[type]</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>通用的校验和元数据：</p>
+<ul>
+<li>alias</li>
+<li>title</li>
+<li>description</li>
+<li>deprecated</li>
+</ul>
+<p>特定于字符串的校验：</p>
+<ol>
+<li>min_length</li>
+<li>max_length</li>
+<li>regex</li>
+</ol>
+<p><strong>别名参数: alias</strong><br>eg:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params">q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = Query(<span class="params">default=<span class="literal">None</span>, alias=<span class="string">&quot;item-query&quot;</span></span>)</span>):</span><br><span class="line">    results = &#123;<span class="string">&quot;items&quot;</span>: [&#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Foo&quot;</span>&#125;, &#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Bar&quot;</span>&#125;]&#125;</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        results.update(&#123;<span class="string">&quot;q&quot;</span>: q&#125;)</span><br><span class="line">    <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure>
+
+
+<p>这个就在Query()中设置了,alias参数,设置了q的别名,<strong>该别名将用于在 URL 中查找查询参数值</strong></p>
+<p><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231103221636.png]]</p>
+<p>还可以弃用参数   <code>deprecated=True</code>  <code>deprecated</code>是个Query里面的一个属性值.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Query</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params"></span></span><br><span class="line"><span class="params">    q: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = Query(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="params">        default=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="params">        alias=<span class="string">&quot;item-query&quot;</span>,</span></span></span><br><span class="line"><span class="params"><span class="params">        title=<span class="string">&quot;Query string&quot;</span>,</span></span></span><br><span class="line"><span class="params"><span class="params">        description=<span class="string">&quot;Query string for the items to search in the database that have a good match&quot;</span>,</span></span></span><br><span class="line"><span class="params"><span class="params">        min_length=<span class="number">3</span>,</span></span></span><br><span class="line"><span class="params"><span class="params">        max_length=<span class="number">50</span>,</span></span></span><br><span class="line"><span class="params"><span class="params">        pattern=<span class="string">&quot;^fixedquery$&quot;</span>,</span></span></span><br><span class="line"><span class="params"><span class="params">        deprecated=<span class="literal">True</span>,</span></span></span><br><span class="line"><span class="params"><span class="params">    </span>),</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    results = &#123;<span class="string">&quot;items&quot;</span>: [&#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Foo&quot;</span>&#125;, &#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Bar&quot;</span>&#125;]&#125;</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        results.update(&#123;<span class="string">&quot;q&quot;</span>: q&#125;)</span><br><span class="line">    <span class="keyword">return</span> results</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="路径参数和数值校验"><a href="#路径参数和数值校验" class="headerlink" title="路径参数和数值校验"></a>路径参数和数值校验</h2><p>先了解一下annotated的简介:</p>
+<p>在Python中，”Annotated”通常指的是类型注解（Type Hints）。类型注解是Python 3.5引入的一项功能，它允许开发人员在代码中添加类型信息，以帮助开发人员更好地理解代码的预期行为，并提高代码的可读性和可维护性。</p>
+<p>类型注解可以用于变量、函数参数和返回值等。通过使用类型注解，开发人员可以明确指定变量的数据类型，以及函数参数和返回值的类型。这有助于开发人员更好地理解代码，并可以在代码执行期间进行静态类型检查，以发现潜在的错误和不一致性。</p>
+<p>eg:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">greet</span>(<span class="params">name: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>: <span class="keyword">return</span> <span class="string">&quot;Hello, &quot;</span> + name age: <span class="built_in">int</span> = <span class="number">30</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>-&gt; str</code> 表示的是返回值是str类型的 各种变量名冒号之后的是 类型   “Annotated”通常指的是类型注解（Type Hints）  就是增加了一个类型注解</p>
+<p>使用Annotated</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Annotated</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Path, Query</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params"></span></span><br><span class="line"><span class="params">    item_id: Annotated[<span class="built_in">int</span>, Path(<span class="params">title=<span class="string">&quot;The ID of the item to get&quot;</span></span>)],</span></span><br><span class="line"><span class="params">    q: Annotated[<span class="built_in">str</span> | <span class="literal">None</span>, Query(<span class="params">alias=<span class="string">&quot;item-query&quot;</span></span>)] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    results = &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        results.update(&#123;<span class="string">&quot;q&quot;</span>: q&#125;)</span><br><span class="line">    <span class="keyword">return</span> results</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p><code> item_id: Annotated[int, Path(title=&quot;The ID of the item to get&quot;)],</code>  表示item_id是一个int<strong>并且</strong>是一个Path参数</p>
+<p><strong>只要是Path参数是不能省略的,因为他是参数的一部分</strong><br><code> q: Annotated[str | None, Query(alias=&quot;item-query&quot;)] = None,</code>  这个q参数,就是一个str<strong>或者是</strong> None的一个参数  并且用Query的alias属性设置了一个查询参数</p>
+<p>对参数进行排序:</p>
+<p>数据校验: </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Path</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_items</span>(<span class="params"></span></span><br><span class="line"><span class="params">    *, item_id: <span class="built_in">int</span> = Path(<span class="params">title=<span class="string">&quot;The ID of the item to get&quot;</span>, ge=<span class="number">1</span></span>), q: <span class="built_in">str</span></span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    results = &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        results.update(&#123;<span class="string">&quot;q&quot;</span>: q&#125;)</span><br><span class="line">    <span class="keyword">return</span> results</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>进行数据校验,<code>ge=1</code> 表示 item_id是一个必须大于或等于1的整数.</p>
+<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><p>fastapi是更倾向于数据接口的开发</p>
+<p>更是适配与前后端分离的趋势</p>
+<p>FastApi的<strong>两个核心<code>Starlette</code>和<code>Pydantic</code></strong></p>
+<p>starlette 负责web部分(Asyncio)  异步的web服务   python3.5+<br>    1. starlette是一个轻量级的ASGI框架  在这个基础上完成了异步web服务<br>    2. ![[Pasted image 20231104154512.png]]</p>
+<p>Pydantic 负责数据部分 (类型提示)<br>    1. typing 是python3.6引入的一个类型提示</p>
+<p><code>**打散</code>传参的时候是按照关键字进行传参<br><code>*</code> 是按照位置进行传参<br><code>repr</code>是看原始的数据格式</p>
+<p>http是一个基于tcp的应用上层协议</p>
+<p>http协议  只有客户端发送请求  服务端进行响应     服务端不会主动的去给客户端发送响应</p>
+<p><strong>请求响应模式</strong>    有请求必须要有响应</p>
+<p>无状态保存   对于服务器而言,一次请求就是一次单独的,之前的任何服务器对于客户的请求,服务器一概不知.</p>
+<p>但是有时候需要进行记录  所以产生了cookie和session机制</p>
+<p>websocket   服务器可以主动的推送</p>
+<p><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231104163127.png]]</p>
+<p>完整的URL 包含<br>    协议 路径 ip 端口 参数</p>
+<p>HTTP请求首行  包含三个部分  1. 请求方式  2. 请求路径   3. 请求协议<br><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231104170400.png]]</p>
+<p>content-type:  很重要的请求头</p>
+<p><strong>决定了(服务端)如何处理请求体里面的数据</strong>   json  urlencoded   传文件 formdata格式  让服务器能够看懂我们客户端给他发的是什么</p>
+<p>服务端得到<code>post</code>请求的时候,先获取到<code>content-type</code>这个字段,然后根据这个字段,获取到body中的数据格式,获取到body的数据,进行<code>解包</code></p>
+<p><strong>决定了客户端如何渲染得到的数据</strong> </p>
+<p>响应首行  1.协议版本  2. 状态码   3. ok<br>响应头</p>
+<p>利用所学构建一个HTTP server</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket  </span><br><span class="line">  </span><br><span class="line">sock = socket.socket()  </span><br><span class="line">sock.bind((<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">8080</span>))   <span class="comment"># bind需要的参数是一个元组,把绑定的ip和对应的端口号放入这个元组中  </span></span><br><span class="line">sock.listen(<span class="number">5</span>)   <span class="comment"># 5是等待的最大数量</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:  </span><br><span class="line">    conn, addr = sock.accept()  <span class="comment"># conn 是客户端通信的管道 管道是双向的(可收可发)   conn.send   conn.receive  全双工的管道  </span></span><br><span class="line">    data = conn.recv(<span class="number">1024</span>)  <span class="comment"># 取1k的数据  </span></span><br><span class="line">    <span class="built_in">print</span>(data)  </span><br><span class="line">  </span><br><span class="line">    conn.send(<span class="string">b&#x27;HTTP/1.1 200 ok\r\n\r\nhello word&#x27;</span>)  </span><br><span class="line">    conn.close() </span><br></pre></td></tr></table></figure>
+
+<p>如果没有HTTP&#x2F;1.1 200 ok 等 浏览器会报错<br><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231104223023.png]]<br>不加上就会爆出错误   目前测试在<code>firefox</code>上不会报错,但是在<code>chrome</code>上会爆出错误.</p>
+<p>对应代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket  </span><br><span class="line">  </span><br><span class="line">sock = socket.socket()  </span><br><span class="line">sock.bind((<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">8080</span>))   <span class="comment"># bind需要的参数是一个元组,把绑定的ip和对应的端口号放入这个元组中  </span></span><br><span class="line">sock.listen(<span class="number">5</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:  </span><br><span class="line">    conn, addr = sock.accept()  <span class="comment"># conn 是客户端通信的管道 管道是双向的(可收可发)   conn.send   conn.receive  全双工的管道  </span></span><br><span class="line">    data = conn.recv(<span class="number">1024</span>)  <span class="comment"># 取1k的数据  </span></span><br><span class="line">    <span class="built_in">print</span>(data)  </span><br><span class="line">  </span><br><span class="line">    conn.send(<span class="string">b&#x27;hello word&#x27;</span>)  </span><br><span class="line">    conn.close()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231104223134.png]]</p>
+<p>content-type在响应头里面决定了用户端的页面渲染类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket  </span><br><span class="line">  </span><br><span class="line">sock = socket.socket()  </span><br><span class="line">sock.bind((<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">8090</span>))   <span class="comment"># bind需要的参数是一个元组,把绑定的ip和对应的端口号放入这个元组中  </span></span><br><span class="line">sock.listen(<span class="number">5</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:  </span><br><span class="line">    conn, addr = sock.accept()  <span class="comment"># conn 是客户端通信的管道 管道是双向的(可收可发)   conn.send   conn.receive  全双工的管道  </span></span><br><span class="line">    data = conn.recv(<span class="number">1024</span>)  <span class="comment"># 取1k的数据  </span></span><br><span class="line">    <span class="built_in">print</span>(data)  </span><br><span class="line">  </span><br><span class="line">    conn.send(<span class="string">b&#x27;HTTP/1.1 200 ok\r\ncontent-type:application/json\r\n\r\nhello word&#x27;</span>)  </span><br><span class="line">    conn.close()</span><br></pre></td></tr></table></figure>
+
+<p><code>这里面设置了content-type 所以postman可以解析出来字符串</code></p>
+<p><code>raw</code> 原始数据   <code>pretty</code> 格式化后的数据</p>
+<h2 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h2><p>前后端分离主要说的是职责分离</p>
+<p>前后端不分离:<br>![Pasted image 20231105093111](&#x2F;img&#x2F;imgs&#x2F;Pasted image 20231105093111.png)<br> 后端既要处理数据,又要处理页面,最后把数据嵌入到页面中</p>
+<hr>
+<p>![Pasted image 20231105093252](&#x2F;img&#x2F;imgs&#x2F;Pasted image 20231105093252.png)</p>
+<p>前后端分离,不关心前端,后端只关注对与数据的操作.  后端服务器只提供数据.  一般只返回一个json数据</p>
+<p>API:  一个url可以映射到对应的类和方法<br>restful接口开发规范  为web开发定义API接口的设计风格   面向资源开发   和 RPC  </p>
+<p>摒弃掉这种开发模式,不是restful规定的    要基于不同的请求方式来表达请求的目的.因为操作一个资源的路径是相同的  就要辨别怎么操作<br><img src="/img/imgs/" alt="Pasted image 20231105094345.png" onerror='this.onerror=null;this.src="/img/404.jpg"'>   </p>
+<p>获取到请求方式,来获取到需要进行对应的操作</p>
+<p><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231105094753.png]]</p>
+<p>路径操作装饰器的参数:</p>
+<p><code>tags=[&#39;&#39;]</code>  增加对一个接口的标题<br><code>summary=&#39;&#39;</code>  概述<br><code>description</code>&#x3D;’’  详细描述<br><code>response_description</code>&#x3D;’’  响应的注解<br><code>deprecated=True</code> 废弃了这个接口  </p>
+<p><code>include_router</code> 将不同子应用的路由进行分发和结藕<br>先把子应用所在的包导入进来.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">form apps <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">app=FastAPI()</span><br><span class="line"></span><br><span class="line">app.include_routers(app01,prefix=<span class="string">&#x27;/app01/&#x27;</span>,tags=[<span class="string">&#x27;这个是app01&#x27;</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 子路由设置为 apirouter</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>注意三个参数  第一个参数apirouter的对象,设置一下前缀<code>prefix</code>,和标签<code>tags</code></p>
+<p>目录结构:<br><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231105140031.png]]</p>
+<p>apps.shop.urls里面的代码:    </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span>  fastapi <span class="keyword">import</span>  APIRouter  </span><br><span class="line">  </span><br><span class="line">shop=APIRouter()  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@shop.get(<span class="params"><span class="string">&#x27;/food&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">shop_food</span>():  </span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;shop&#x27;</span>:<span class="string">&#x27;food&#x27;</span>&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@shop.get(<span class="params"><span class="string">&#x27;/bed&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">shop_food</span>():  </span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;bed&#x27;</span>:<span class="string">&#x27;bed&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>apps.users.urls里面的代码与这个基本一致</p>
+<p>main中的代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> apps.shop.urls <span class="keyword">import</span> shop  </span><br><span class="line"><span class="keyword">from</span> apps.users.urls <span class="keyword">import</span> user</span><br><span class="line">app.include_router(shop,prefix=<span class="string">&#x27;/shop&#x27;</span>,tags=[<span class="string">&#x27;购物中心&#x27;</span>])  </span><br><span class="line">app.include_router(user,prefix=<span class="string">&#x27;/user&#x27;</span>,tags=[<span class="string">&#x27;用户中心&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+
+<p>在fastAPI的文档中:<br><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231105140802.png]]</p>
+<p><strong>开发时,更多的是使用include_router这种方法</strong></p>
+<p>应该把文档写的尽可能的详细</p>
+<p>eg:<br><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231105105450.png]]</p>
+<h2 id="请求与响应"><a href="#请求与响应" class="headerlink" title="请求与响应"></a>请求与响应</h2><h3 id="路径参数-2"><a href="#路径参数-2" class="headerlink" title="路径参数"></a>路径参数</h3><p>根据路由匹配时，从上至下只要匹配上，下面的就不匹配</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> APIRouter  </span><br><span class="line">  </span><br><span class="line">user = APIRouter()  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@user.get(<span class="params"><span class="string">&#x27;/1&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">get_user</span>():  </span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;user&#x27;</span>:<span class="string">&#x27;hello root!&#x27;</span>&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@user.get(<span class="params"><span class="string">&#x27;/&#123;id&#125;&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">get_user</span>(<span class="params"><span class="built_in">id</span>: <span class="built_in">int</span></span>):  </span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;user_id&#x27;</span>: <span class="built_in">id</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>eg：<br><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231106194520.png]]</p>
+<p>这个就是先匹配到了写死的的那个函数里面，所以返回的并不是id的值，而是另外一个  所以说<strong>路由匹配的顺序很重要</strong></p>
+<p>路径参数在blog等平台会用的多一些，其他的平台查询参数用的不多</p>
+<h3 id="查询参数："><a href="#查询参数：" class="headerlink" title="查询参数："></a>查询参数：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span>  APIRouter  </span><br><span class="line">  </span><br><span class="line">app02=APIRouter()  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@app02.get(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">find_jobs</span>(<span class="params">xl,gj,kd</span>):  </span><br><span class="line">    <span class="keyword">return</span> &#123;  </span><br><span class="line">        <span class="string">&#x27;xl&#x27;</span>:xl,  </span><br><span class="line">        <span class="string">&#x27;gj&#x27;</span>:gj,  </span><br><span class="line">        <span class="string">&#x27;kd&#x27;</span>:kd,  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>eg：  路径参数会显示出path  查询参数是query<br><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231106200432.png]]<br>查询参数和路径参数均可以混用</p>
+<p>&#96;&#96;<br><code>async def find_jobs(xl,gj:Union[str,None],kd=None):</code><br>Union[str,None] 方括号里面的是类型  表示 gj参数可以是 str和None,但此时仍是一个必选参数，如果想变成一个可选参数。<code>Union[str,None]=None</code>  就是一个默认值。并且已经限定了可以是那种类型的。  Union就可以是设置一个参数有多类型。<br><code>gj:Union[int,None,float]=None</code>  表示gj可以有三种类型 分别是 <code>int</code> <code>float</code> <code>None</code> 三种类型。并且默认值是None</p>
+<p><code>Optional[int]=None</code> 完全等于 <code>Union[int,None]=None</code>  但是注意 Optional只能有一个参数，不可以有多个</p>
+<h3 id="请求体数据"><a href="#请求体数据" class="headerlink" title="请求体数据"></a>请求体数据</h3><p>FastApi 基于 pydantic进行校验数据   进行数据校验的速度很快</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(<span class="title class_ inherited__">BaseModel</span>):  </span><br><span class="line">    name: <span class="built_in">str</span>  </span><br><span class="line">    age: <span class="built_in">int</span>  </span><br><span class="line">    birth: date  </span><br><span class="line">    friends: <span class="type">List</span>[<span class="built_in">int</span>]  <span class="comment"># List[int]  对list中的数据类型进行了限定，是int类型的  </span></span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@app03.post(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">data</span>(<span class="params">user: User</span>):  </span><br><span class="line">    <span class="keyword">return</span> user</span><br></pre></td></tr></table></figure>
+<p>可以看到  fastapi可以直接返回一个自定义的数据类型，fastapi会自动的转化为json格式，进行发包。</p>
+<p>python收到一个json包，会先转换为字典，然后会校验这个字典中的内容，没什么问题之后，把字典中的字段和值转化为一个对象，在return 对象时，会发生把对象转化为json格式。</p>
+<p>pydantic  当类型不一致时，不一定报错，会进行类型转换，当转换不过来的时候，才会报错。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> APIRouter  </span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, Field,  field_validator  </span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, <span class="type">Union</span>, <span class="type">Optional</span>  </span><br><span class="line">  </span><br><span class="line">app03 = APIRouter()  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(<span class="title class_ inherited__">BaseModel</span>):  </span><br><span class="line">    name: <span class="built_in">str</span>=<span class="string">&#x27;root&#x27;</span>  </span><br><span class="line">    age: <span class="built_in">int</span>=Field(ge=<span class="number">1</span>,le=<span class="number">100</span>)  <span class="comment"># ge 小于   le 大于  </span></span><br><span class="line">    birth: <span class="type">Union</span>[date,<span class="literal">None</span>]=<span class="literal">None</span>  </span><br><span class="line">    friends: <span class="type">List</span>[<span class="built_in">int</span>]=[]<span class="comment"># List[int]  对list中的数据类型进行了限定，是int类型的  </span></span><br><span class="line">    description:<span class="type">Optional</span>[<span class="built_in">str</span>]=<span class="literal">None</span>  </span><br><span class="line">  </span><br><span class="line"><span class="meta">    @field_validator(<span class="params"><span class="string">&#x27;name&#x27;</span></span>)  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">judg_name</span>(<span class="params">cls,name</span>):  </span><br><span class="line">        <span class="keyword">assert</span> name.isalpha(), <span class="string">&quot;name must be alpha&quot;</span>  </span><br><span class="line">        <span class="keyword">return</span> name  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@app03.post(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">data</span>(<span class="params">user: User</span>):  </span><br><span class="line">    <span class="keyword">return</span> user</span><br></pre></td></tr></table></figure>
+<p>可以加上各种限定和默认值，取值范围等。</p>
+<p>可以在自定义类型中加上函数自己去任意限定字段的取值。<br><strong>需要引入<code>pydantic</code>的<code>field_validator</code>  然后就可以用了</strong></p>
+<p>除此之外还可以嵌套自定义类型</p>
+<p>eg</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Addr</span>(<span class="title class_ inherited__">BaseModel</span>):  </span><br><span class="line">    province:<span class="built_in">str</span>  </span><br><span class="line">    city:<span class="built_in">str</span>  </span><br><span class="line">      </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(<span class="title class_ inherited__">BaseModel</span>):  </span><br><span class="line">    name: <span class="built_in">str</span>=<span class="string">&#x27;root&#x27;</span>  </span><br><span class="line">    age: <span class="built_in">int</span>=Field(ge=<span class="number">1</span>,le=<span class="number">100</span>)  <span class="comment"># ge 小于   le 大于  </span></span><br><span class="line">    birth: <span class="type">Union</span>[date,<span class="literal">None</span>]=<span class="literal">None</span>  </span><br><span class="line">    friends: <span class="type">List</span>[<span class="built_in">int</span>]=[]<span class="comment"># List[int]  对list中的数据类型进行了限定，是int类型的  </span></span><br><span class="line">    description:<span class="type">Optional</span>[<span class="built_in">str</span>]=<span class="literal">None</span>  </span><br><span class="line">    addr:<span class="type">Optional</span>[Addr]=<span class="literal">None</span>  </span><br><span class="line">  </span><br><span class="line"><span class="meta">    @field_validator(<span class="params"><span class="string">&#x27;name&#x27;</span></span>)  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">judg_name</span>(<span class="params">cls,name</span>):  </span><br><span class="line">        <span class="keyword">assert</span> name.isalpha(), <span class="string">&quot;name must be alpha&quot;</span>  </span><br><span class="line">        <span class="keyword">return</span> name  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@app03.post(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">data</span>(<span class="params">user: User</span>):  </span><br><span class="line">    <span class="keyword">return</span> user</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<p>先定义了一个自定义类型的Addr类型</p>
+<p>然后在自定义类型User中使用了这个Addr类型，这个就是嵌套定义。可以嵌套使用。</p>
+<h4 id="form表单"><a href="#form表单" class="headerlink" title="form表单"></a>form表单</h4><p>form表单是来自于fastapi里面的<br>pydantic不属于fastapi<br>form表单格式是fastapi自带的</p>
+<p>form表单使用post请求时的content-type是www-urlencoded格式不是json格式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> APIRouter  </span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, Field, field_validator  </span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, <span class="type">Union</span>, <span class="type">Optional</span>  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> Form  </span><br><span class="line">  </span><br><span class="line">app04 = APIRouter()  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@app04.post(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">user</span>(<span class="params">username: <span class="built_in">str</span> = Form(<span class="params"></span>), password: <span class="built_in">str</span> = Form(<span class="params"></span>)</span>):  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;username:<span class="subst">&#123;username&#125;</span> password:<span class="subst">&#123;password&#125;</span>&quot;</span>)  </span><br><span class="line">    <span class="keyword">return</span> &#123;  </span><br><span class="line">        <span class="string">&#x27;username&#x27;</span>:username  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>username: str = Form()</code> 通过这种方式设置一个Form表单格式<br><code>password: str = Form()</code> </p>
+<p>这样只能通过这样传参<br><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231107141423.png]]</p>
+<h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><p>文件上传会有另外一种content-type：面对大的字节流的一种处理类型</p>
+<p>fastapi中的file类型是一个对象直接接收了全部的文件内容，全部放到内存中去。只能上传小的文件。UploadFile类型可以上传大文件，得到的是一个文件的句柄。可以大大的减少对内存的压力。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> APIRouter, UploadFile  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> APIRouter  </span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, Field, field_validator  </span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, <span class="type">Union</span>, <span class="type">Optional</span>  </span><br><span class="line">  </span><br><span class="line">app05 = APIRouter()  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> Form, File  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@app05.post(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">upload</span>(<span class="params">file: <span class="built_in">bytes</span> = File(<span class="params"></span>)</span>):  <span class="comment"># 直接把文件载入内存，文件太大内存不够容易崩溃  </span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;len(file)&#x27;</span>: <span class="built_in">len</span>(file)&#125;  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#  使用文件句柄的方式操作文件，适合大文件传输  使用fastapi的uploadfile  </span></span><br><span class="line">  </span><br><span class="line"><span class="meta">@app05.post(<span class="params"><span class="string">&#x27;/files&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">upload_files</span>(<span class="params">file: UploadFile</span>):  </span><br><span class="line">    path = os.path.join(<span class="string">&#x27;file&#x27;</span>, file.filename)  </span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:  </span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> file.file:  </span><br><span class="line">            f.write(line)  </span><br><span class="line">    <span class="keyword">return</span> &#123;  </span><br><span class="line">        <span class="string">&#x27;file_len&#x27;</span>: file.size  </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#  使用文件句柄的方式操作文件，适合大文件传输  使用fastapi的uploadfile  </span></span><br><span class="line">  </span><br><span class="line"><span class="meta">@app05.post(<span class="params"><span class="string">&#x27;/files&#x27;</span></span>)  </span><span class="comment"># 上传一个文件，并且写入硬盘中  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">upload_files</span>(<span class="params">file: UploadFile</span>):  </span><br><span class="line">    path = os.path.join(<span class="string">&#x27;file&#x27;</span>, file.filename)  </span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:  </span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> file.file:  </span><br><span class="line">            f.write(line)  </span><br><span class="line">    <span class="keyword">return</span> &#123;  </span><br><span class="line">        <span class="string">&#x27;file_len&#x27;</span>: file.size  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@app05.post(<span class="params"><span class="string">&#x27;/more_files&#x27;</span></span>)   </span><span class="comment"># 上传多个文件  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">upload_files</span>(<span class="params">files: <span class="type">List</span>[UploadFile]</span>):  </span><br><span class="line">    a=&#123;&#125;  </span><br><span class="line">    <span class="keyword">for</span> file  <span class="keyword">in</span> files:  </span><br><span class="line">        a[file.filename]=file.size  </span><br><span class="line">    <span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>
+
+<p>可以上传多个文件，使用upload可以极大的缓解内存的压力，使用句柄操作。</p>
+<h3 id="request-对象"><a href="#request-对象" class="headerlink" title="request 对象"></a>request 对象</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> APIRouter,Request  </span><br><span class="line">  </span><br><span class="line">app06=APIRouter()  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@app06.get(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">item</span>(<span class="params">request:Request</span>):  </span><br><span class="line">    <span class="keyword">return</span> &#123;  </span><br><span class="line">        <span class="string">&#x27;url&#x27;</span>:request.url,  </span><br><span class="line">        <span class="string">&#x27;cookie&#x27;</span>:request.cookies,  </span><br><span class="line">        <span class="string">&#x27;user-agent&#x27;</span>:request.headers.get(<span class="string">&#x27;user-agent&#x27;</span>),  </span><br><span class="line">        <span class="string">&#x27;ip&#x27;</span>:request.client.host,  </span><br><span class="line">        <span class="string">&#x27;port&#x27;</span>:request.client.port  </span><br><span class="line">    &#125;</span><br><span class="line">````</span><br><span class="line">本质上就是获取发送方的信息  获取到的url和cookie是一个字典形式的。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">### 请求静态文件</span></span><br><span class="line"></span><br><span class="line">搞清楚两个概念  </span><br><span class="line">	<span class="number">1.</span> 静态文件和动态文件 </span><br><span class="line">	<span class="number">2.</span> 静态网站和动态网站</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">静态网站：就是提前把html等一些文件放入服务器，访问者直接访问这个文件即可</span><br><span class="line">动态网站，会根据请求动态的显示不同的页面</span><br><span class="line">![](/img/imgs/)Pasted image <span class="number">20231107152859.</span>png]]</span><br><span class="line">除此之外，我们还需要静态的网页，所以可以开放出一个文件夹，显示这个文件夹中的静态网页。其他的文件夹肯定是不能访问的。</span><br><span class="line"></span><br><span class="line">使用fastapi中的staticfile</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">app.mount(<span class="string">&#x27;/static&#x27;</span>, StaticFiles(directory=<span class="string">&#x27;file&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>地一个参数是路由，第二个参数是真正的文件位置</p>
+<h4 id="响应参数"><a href="#响应参数" class="headerlink" title="响应参数"></a>响应参数</h4><p>response_model是路径操作上的参数，不是路径函数上的参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&#x27;/&#x27;</span>,response_model=Item</span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>有输入的数据模型，也可以有输出的数据模型</p>
+<p><strong>response_model&#x3D;Item</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> APIRouter  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> fastapi.staticfiles <span class="keyword">import</span> StaticFiles  </span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, EmailStr  </span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Union</span>  </span><br><span class="line">  </span><br><span class="line">app07 = APIRouter()  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(<span class="title class_ inherited__">BaseModel</span>):    <span class="comment"># 输入的数据模型</span></span><br><span class="line">    username: <span class="built_in">str</span>  </span><br><span class="line">    password: <span class="built_in">str</span>  </span><br><span class="line">    email: EmailStr  </span><br><span class="line">    full_name: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = <span class="literal">None</span>  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Userout</span>(<span class="title class_ inherited__">BaseModel</span>):  <span class="comment"># 输出的数据模型</span></span><br><span class="line">    username: <span class="built_in">str</span>  </span><br><span class="line">    email: EmailStr  </span><br><span class="line">    full_name: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="literal">None</span>] = <span class="literal">None</span>  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@app07.post(<span class="params"><span class="string">&#x27;/&#x27;</span>, response_model=Userout</span>) </span><span class="comment"># 输出的时候按照输出的数据模型</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">creat_user</span>(<span class="params">user: User</span>):  </span><br><span class="line">    <span class="keyword">return</span> user</span><br></pre></td></tr></table></figure>
+
+<p>eg<br><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231108164505.png]]<br><strong>response_model_exclude_unset</strong></p>
+<p>排除没有设置的值，返回的值如果有一些是默认的并且没有被设置的，不返回</p>
+<p><strong>response_model_exclude_default</strong>  不要默认值的<br><strong>response_model_exclude_none</strong>  结果为None的值不要<br><strong>response_model_exclude&#x3D;{}</strong>   后面是一个集合 排除那些字段<br><strong>response_model_include&#x3D;{}</strong>   后面是一个集合 包含那些字段 </p>
+<h4 id="jinja2模板（但凡使用模板，前后端都是不分离的）"><a href="#jinja2模板（但凡使用模板，前后端都是不分离的）" class="headerlink" title="jinja2模板（但凡使用模板，前后端都是不分离的）"></a>jinja2模板（但凡使用模板，前后端都是不分离的）</h4><p>变量控制结构：<code>&#123;% %&#125;</code><br>变量取值：<code>&#123;&#123;&#125;&#125;</code></p>
+<p>既要处理数据，又要渲染模板文件，称为前后端不分离</p>
+<ol>
+<li>深度查询</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;book.0&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;bool.1&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;book.2&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;book.3&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>访问列表中的属性用<code>.</code>而不是<code>[]</code><br>2. 过滤器<br><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231110132438.png]]<br>进行前端页面渲染的  业务逻辑层的数据在模板处进行一个展示</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if age&gt;18 %&#125;     /* 进行判断是否要进行展示这些内容 */</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;books.0&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;books.1&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;books.2&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;books.3&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">&#123;% else %&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>猫和老鼠<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>黑豹警长<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>熊出没<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">&#123;%endif%&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&#96;&#96;<br><code>if</code>就是一个逻辑判断，在html中，判断的是<code>if  else </code>中的内容是否根据条件进行渲染，并不是html中的代码不执行    会根据年龄的大小，进行不同的页面渲染</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>  </span><br><span class="line">    &#123;% for book in books %&#125;  </span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;book&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </span><br><span class="line">    &#123;% endfor %&#125;  </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>jinja2使用for循环</p>
+<h4 id="ORM（Object-Relational-Mapping）-对象关系映射"><a href="#ORM（Object-Relational-Mapping）-对象关系映射" class="headerlink" title="ORM（Object Relational Mapping） 对象关系映射"></a>ORM（<strong>Object Relational Mapping</strong>） 对象关系映射</h4><p>related_name  字段反向查询     </p>
+<p>一个学生对应一个班级   一个班级对应多个学生   </p>
+<p>学生找班级    student.clas</p>
+<p>班级找学生  就需要用 related_name这个字段了   反向查找</p>
+<p><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231111190215.png]]</p>
+<p>使用aerich进行数据库迁移</p>
+<p>初始化配置文件 一般只是刚开始用<br>aerich init -t 路径   </p>
+<p>aerich init-db  初始化数据库</p>
+<p>如果在使用的过程中发现需要更新数据库  先把对应的对象更新之后使用命令</p>
+<p>aerich migrate<br>然后会在mirations中的models文件夹中更生成一个.py文件，是对应的升级和降级的语句</p>
+<p>aerich upgrate  实现更新<br>aerich downgrate  实现倒退</p>
+<p>一张表映射的是一个类</p>
+<p>一个记录映射的是一个类的实例对象</p>
+<p>对应的代码和注释都在下面的代码块中</p>
+<p>Studen.py的处理内容，处理Studen这个表（增删盖查）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> APIRouter, Response, Request,HTTPException  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> models <span class="keyword">import</span> *  </span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, validator, field_validator  </span><br><span class="line"><span class="keyword">import</span> re  </span><br><span class="line">  </span><br><span class="line">student_api = APIRouter()  </span><br><span class="line"><span class="keyword">from</span> fastapi.templating <span class="keyword">import</span> Jinja2Templates  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 查询所有学生信息  在tortoal orm下面必须要做异步支持   必须加上async 和  await@student_api.get(&#x27;/index&#x27;)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">getallstugent</span>(<span class="params">request: Request</span>):  </span><br><span class="line">    templates = Jinja2Templates(directory=<span class="string">&#x27;templates&#x27;</span>)  </span><br><span class="line">    <span class="comment"># 1. 查询所有all方法  </span></span><br><span class="line">    students = <span class="keyword">await</span> Studen.<span class="built_in">all</span>()  <span class="comment"># 拿到了这个studen这个表的全部值  返回的这个页面一直在刷新  </span></span><br><span class="line">    <span class="comment"># for stu in students:  </span></span><br><span class="line">    <span class="comment">#     print(stu.name,stu.sno,stu.clas_id)  </span></span><br><span class="line">    <span class="keyword">return</span> templates.TemplateResponse(  </span><br><span class="line">        <span class="string">&#x27;index.html&#x27;</span>,  </span><br><span class="line">        &#123;  </span><br><span class="line">            <span class="string">&#x27;request&#x27;</span>: request,  <span class="comment"># 这个request这个参数一定要加上  </span></span><br><span class="line">            <span class="string">&#x27;students&#x27;</span>: students  </span><br><span class="line">        &#125;  </span><br><span class="line">    )  </span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 2. 过滤查询filter方法  </span></span><br><span class="line">    <span class="comment"># students = await Studen.filter(name=&#x27;rain&#x27;)  # 拿到了这个studen这个表的全部值  </span></span><br><span class="line">    <span class="comment"># # 这个方法返回的是一个类似于列表的类型  必须要从列表中提取出来  </span></span><br><span class="line">    <span class="comment"># for stu in students:  </span></span><br><span class="line">    <span class="comment">#     print(stu.name, stu.sno, stu.clas_id)    # return &#123;&#125;  </span></span><br><span class="line">    <span class="comment"># 3. 单一查询get方法  </span></span><br><span class="line">    <span class="comment"># stu = await Studen.get(name=&#x27;rain&#x27;)  # 拿到了这个studen这个表的全部值  </span></span><br><span class="line">    <span class="comment"># # 这个方法返回的是一个模型类对象，直接可以对象拿到对应的属性值  </span></span><br><span class="line">    <span class="comment"># print(stu.name, stu.sno, stu.clas_id)  </span></span><br><span class="line">    <span class="comment"># return &#123;&#125;  </span></span><br><span class="line">    <span class="comment"># 4。 模糊查询  </span></span><br><span class="line">    <span class="comment"># stu=await  Studen.filter(sno__gt=202301)  # &gt;=202301  </span></span><br><span class="line">    <span class="comment"># stu = await  Studen.filter(sno__in=[202301,202302]) # 在列表中的值  不是一个范围  </span></span><br><span class="line">    <span class="comment"># stu = await  Studen.filter(sno__range=[1,1000]) # 是range范围中的值  返回的是一个列表  </span></span><br><span class="line">    <span class="comment"># print(stu)  </span></span><br><span class="line">    <span class="comment"># return &#123;&#125;  </span></span><br><span class="line">    <span class="comment"># 5 values查询  </span></span><br><span class="line">    <span class="comment"># stu = await  Studen.all().values(&#x27;name&#x27;,&#x27;sno&#x27;,&#x27;clas_id&#x27;)  </span></span><br><span class="line">    <span class="comment"># return stu  </span></span><br><span class="line">  </span><br><span class="line"><span class="meta">@student_api.get(<span class="params"><span class="string">&#x27;/&#123;student_id&#125;&#x27;</span></span>)  </span><span class="comment"># 查询学生id的信息  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">getallstugent</span>(<span class="params">student_id: <span class="built_in">int</span></span>):  </span><br><span class="line">    <span class="comment"># 6 一对多查询和多对多查询  </span></span><br><span class="line">    stu = <span class="keyword">await</span> Studen.get(<span class="built_in">id</span>=student_id)  </span><br><span class="line">    <span class="built_in">print</span>()  <span class="comment"># 查询一个学生的id对应的名称  </span></span><br><span class="line">    name = <span class="keyword">await</span> stu.clas.values(<span class="string">&#x27;name&#x27;</span>)  </span><br><span class="line">    <span class="comment"># student = await Studen.all().values(&#x27;name&#x27;, &#x27;clas__name&#x27;) # 查询所有学生对应id对应的名称  </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 多对多的查询   单个的  </span></span><br><span class="line">    <span class="built_in">print</span>(<span class="keyword">await</span> stu.course.<span class="built_in">all</span>().values(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;teacher__name&#x27;</span>))  </span><br><span class="line">    <span class="comment"># 多对多的查询   多个的  </span></span><br><span class="line">    student = <span class="keyword">await</span> Studen.<span class="built_in">all</span>().values(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;clas__name&#x27;</span>, <span class="string">&#x27;course__name&#x27;</span>)  <span class="comment"># 查询所有学生对应id对应的名称  </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment">#  查到外键，并且要联合查询，要使用到  属性名__属性名 就查到外键的属性名了  </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment"># return student  </span></span><br><span class="line">    <span class="keyword">return</span> name  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">stu</span>(<span class="title class_ inherited__">BaseModel</span>):  </span><br><span class="line">    name: <span class="built_in">str</span>  </span><br><span class="line">    pwd: <span class="built_in">str</span>  </span><br><span class="line">    sno: <span class="built_in">str</span>  </span><br><span class="line">    clas_id: <span class="built_in">int</span>  </span><br><span class="line">    course: <span class="type">List</span>[<span class="built_in">int</span>] = []  </span><br><span class="line">  </span><br><span class="line"><span class="meta">    @field_validator(<span class="params"><span class="string">&#x27;name&#x27;</span></span>)  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">name</span>(<span class="params">cls, value</span>):  </span><br><span class="line">        <span class="keyword">assert</span> <span class="built_in">len</span>(value) &lt;= <span class="number">64</span>, <span class="string">&quot;名字的长度不能超过64个字符&quot;</span>  </span><br><span class="line">        <span class="keyword">return</span> value  </span><br><span class="line">  </span><br><span class="line"><span class="meta">    @field_validator(<span class="params"><span class="string">&#x27;pwd&#x27;</span></span>)  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pwd</span>(<span class="params">cls, value</span>):  </span><br><span class="line">        <span class="keyword">assert</span> <span class="built_in">len</span>(value) &lt;= <span class="number">128</span>, <span class="string">&quot;密码的长度不能超过128个字符&quot;</span>  </span><br><span class="line">        <span class="keyword">return</span> value  </span><br><span class="line">  </span><br><span class="line"><span class="meta">    @field_validator(<span class="params"><span class="string">&#x27;sno&#x27;</span></span>)  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sno</span>(<span class="params">cls, value</span>):  </span><br><span class="line">        <span class="keyword">assert</span> re.<span class="keyword">match</span>(<span class="string">&quot;^2023[0-9][0-9]&quot;</span>, value), <span class="string">&#x27;学号格式不正确&#x27;</span>  </span><br><span class="line">        <span class="keyword">return</span> value  </span><br><span class="line">  </span><br><span class="line">    <span class="comment"># @field_validator(&#x27;class_id&#x27;)  </span></span><br><span class="line">    <span class="comment"># async def class_id(cls, value):    #     flag = False    #     class_id = await Clas.all().values(&#x27;id&#x27;)    #     print(class_id)    #     for i in class_id:    #         if value == i.get(&#x27;id&#x27;):    #             flag = True    #     assert flag, &quot;这个id不存在&quot;  </span></span><br><span class="line">    <span class="comment">#     return value    #  </span></span><br><span class="line">  </span><br><span class="line"><span class="meta">@student_api.post(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)  </span><span class="comment"># 上传学生信息  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">addstugent</span>(<span class="params">stu_in: stu</span>):  </span><br><span class="line">    <span class="comment"># 传入到数据库中  </span></span><br><span class="line">    <span class="comment"># 方式1：  </span></span><br><span class="line">    <span class="comment"># student = Studen(name=stu_in.name, pwd=stu_in.pwd, sno=stu_in.sno, clas_id=stu_in.class_id)  </span></span><br><span class="line">    <span class="comment"># await student.save()  # 这一个步骤是插入到数据库中  要实现异步操作  </span></span><br><span class="line">    <span class="comment"># return &#123;&#125;  </span></span><br><span class="line">    <span class="comment">#     方式2：  # 对数据库操作一定要加上await操作，不然会报错  </span></span><br><span class="line">    student = <span class="keyword">await</span> Studen.create(name=stu_in.name, pwd=stu_in.pwd, sno=stu_in.sno, clas=stu_in.class_id)  </span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 绑定多对多的方法  </span></span><br><span class="line">    choose_courses = <span class="keyword">await</span> Course.<span class="built_in">filter</span>(id__in=stu_in.course)  </span><br><span class="line">    <span class="keyword">await</span> student.course.add(*choose_courses)  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> student  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 多对多的字段，添加和更细你都要单独来  </span></span><br><span class="line"><span class="meta">@student_api.put(<span class="params"><span class="string">&#x27;/&#123;student_id&#125;&#x27;</span></span>)  </span><span class="comment"># 更新学生信息  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">upgradestugent</span>(<span class="params">student_id: <span class="built_in">int</span>, stu_in: stu</span>):  </span><br><span class="line">    data = stu_in.<span class="built_in">dict</span>()  </span><br><span class="line">    choose_course = data.pop(<span class="string">&#x27;course&#x27;</span>)  <span class="comment"># 这个返回的是  一个列表[]  </span></span><br><span class="line">    <span class="comment"># await Studen.filter(id=student_id).update(name=stu_in.name, pwd=stu_in.pwd, sno=stu_in.sno, clas_id=stu_in.clas_id)   # 这里面的字段名完全是数据库中的  </span></span><br><span class="line">    <span class="keyword">await</span>  Studen.<span class="built_in">filter</span>(<span class="built_in">id</span>=student_id).update(**data)  </span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">type</span>(choose_course))  </span><br><span class="line">    edit_stu = <span class="keyword">await</span> Studen.get(<span class="built_in">id</span>=student_id)  </span><br><span class="line">    <span class="keyword">await</span> edit_stu.course.clear()  </span><br><span class="line">    choose_courses = <span class="keyword">await</span> Course.<span class="built_in">filter</span>(id__in=choose_course)  </span><br><span class="line">    <span class="keyword">await</span> edit_stu.course.add(*choose_courses)  </span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="meta">@student_api.delete(<span class="params"><span class="string">&#x27;/&#123;student_id&#125;&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">deletstudent</span>(<span class="params">student_id: <span class="built_in">int</span></span>):  </span><br><span class="line">    delete_count = <span class="keyword">await</span> Studen.<span class="built_in">filter</span>(<span class="built_in">id</span>=student_id).delete()  <span class="comment"># 级联删除  </span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> delete_count:  </span><br><span class="line">        <span class="keyword">raise</span> HTTPException(status_code=<span class="number">404</span>,detail=<span class="string">f&#x27;id为<span class="subst">&#123;student_id&#125;</span>这个学生找不到&#x27;</span>)  </span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>models.py这个文件，不同的类型对应着各个表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选课系统  </span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> tortoise <span class="keyword">import</span> fields  <span class="comment"># 会把所有的字段放进去  </span></span><br><span class="line"><span class="keyword">from</span> tortoise.models <span class="keyword">import</span> Model  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Studen</span>(<span class="title class_ inherited__">Model</span>):  </span><br><span class="line">    <span class="built_in">id</span> = fields.IntField(pk=<span class="literal">True</span>)  </span><br><span class="line">    name = fields.CharField(max_length=<span class="number">64</span>, description=<span class="string">&#x27;姓名&#x27;</span>)  </span><br><span class="line">    pwd = fields.CharField(max_length=<span class="number">128</span>, description=<span class="string">&#x27;密码&#x27;</span>)  </span><br><span class="line">    sno = fields.CharField(max_length=<span class="number">64</span>, description=<span class="string">&#x27;学号&#x27;</span>, )  </span><br><span class="line">    <span class="comment"># 一对多关系  </span></span><br><span class="line">    clas = fields.ForeignKeyField(<span class="string">&#x27;models.Clas&#x27;</span>, related_name=<span class="string">&#x27;students&#x27;</span>)  <span class="comment"># 设置一个外键  </span></span><br><span class="line">    <span class="comment"># related_name是一个反向查询的名称  </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 多对多关系：  </span></span><br><span class="line">  </span><br><span class="line">    course = fields.ManyToManyField(<span class="string">&#x27;models.Course&#x27;</span>, related_name=<span class="string">&#x27;students&#x27;</span>)  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Clas</span>(<span class="title class_ inherited__">Model</span>):  </span><br><span class="line">    name = fields.CharField(max_length=<span class="number">32</span>, description=<span class="string">&#x27;班级名称&#x27;</span>)  </span><br><span class="line">    <span class="built_in">id</span> = fields.IntField(pk=<span class="literal">True</span>)  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Course</span>(<span class="title class_ inherited__">Model</span>):  </span><br><span class="line">    <span class="built_in">id</span> = fields.IntField(pk=<span class="literal">True</span>)  </span><br><span class="line">    name = fields.CharField(max_length=<span class="number">32</span>, description=<span class="string">&#x27;课程名称&#x27;</span>)  </span><br><span class="line">    teacher = fields.ForeignKeyField(<span class="string">&#x27;models.Teacher&#x27;</span>, related_name=<span class="string">&#x27;course&#x27;</span>)  </span><br><span class="line">    <span class="comment"># addr = fields.CharField(max_length=100, description=&#x27;教室地址&#x27;, default=&#x27; &#x27;)  # 加上default是为了有些记录设置了不能为空  </span></span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Teacher</span>(<span class="title class_ inherited__">Model</span>):  </span><br><span class="line">    <span class="built_in">id</span> = fields.IntField(pk=<span class="literal">True</span>)  </span><br><span class="line">    name = fields.CharField(max_length=<span class="number">64</span>, description=<span class="string">&#x27;姓名&#x27;</span>)  </span><br><span class="line">    pwd = fields.CharField(max_length=<span class="number">128</span>, description=<span class="string">&#x27;密码&#x27;</span>)  </span><br><span class="line">    sno = fields.CharField(max_length=<span class="number">64</span>, description=<span class="string">&#x27;工号&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h4><p>所谓的中间件就是一个函数</p>
+<p>不是所有的中间件都有<code>请求代码块</code>和<code>响应代码块</code>  完整的是包含这两部分</p>
+<p><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231114084929.png]]</p>
+<p><code>请求代码块</code> 只对请求数据做处理，就是在请求到达之后，还未到达路由函数时</p>
+<p>这个就是一个中间件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.middleware(<span class="params"><span class="string">&#x27;http&#x27;</span></span>)  </span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">m1</span>(<span class="params">request: Request, call_next</span>):  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;请求代码快&quot;</span>)  </span><br><span class="line">    response = <span class="keyword">await</span> call_next(request)  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;响应代码块&#x27;</span>)  </span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+
+
+<p>CORS组件 （跨域   经过浏览器是能够正常的通过）</p>
+<p>同源请求：<br>跨域请求：</p>
+<p>主要是设置一个Access-Control-Allow-Origin这个字段</p>
+<p>Fastapi自带的有一个CORS<br><img src="/img/imgs/" onerror='this.onerror=null;this.src="/img/404.jpg"'>Pasted image 20231114094150.png]]</p>
+
+</article>
+    
+    <div class="trm-reward">
+        
+            <span class="trm-reward-btn trm-glow" onclick='var qr = document.getElementById("qr"); qr.style.display = (qr.style.display === "none") ? "block" : "none";'>
+                <i class="iconfont fas fa-hand-holding-usd"></i>
+            </span>
+        
+        <p class="trm-reward-comment">觉得文章还不错，给个奖励吧。谢谢您！</p>
+        <div id="qr" style="display:none;">
+            
+                <div style="display:inline-block">
+                    <a rel="noopener noreferrer" href='/img/pay.jpg' target='_blank' >
+                       <img src="/img/pay.jpg" alt="wechat-pay" loading="lazy">
+                    </a>
+                    <p>wechat-pay</p>
+                </div>
+            
+        </div>
+    </div>
+
+    
+
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2023/10/29/vue2+3%20%E5%AD%A6%E4%B9%A0/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    未分类
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/10/29/vue2+3%20%E5%AD%A6%E4%B9%A0/" class="trm-anima-link">
+                    vue
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/10/29</li>
+                <li>20:20</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.1.0-beta.2
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+        <div class="trm-fixed-btn post-toc-btn" data-title="目录">
+            <i class="iconfont fas fa-th-list"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
+            <i class="iconfont fas fa-arrows-alt-h"></i>
+        </div>
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/js/main.js?v=2.1.0-beta.2"></script>
+
+</body>
+
+</html>

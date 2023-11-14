@@ -1,0 +1,1045 @@
+<hr>
+<h2 id="title-FastApidate-2023-11-14-20-38-00layout-vue"><a href="#title-FastApidate-2023-11-14-20-38-00layout-vue" class="headerlink" title="title: FastApidate: 2023-11-14 20:38:00layout: vue"></a>title: FastApi<br>date: 2023-11-14 20:38:00<br>layout: vue</h2><h1 id="FastAPI"><a href="#FastAPI" class="headerlink" title="FastAPI"></a>FastAPI</h1><pre><code class="python">uvicorn main:app --reload
+</code></pre>
+<h2 id="第一天"><a href="#第一天" class="headerlink" title="第一天"></a>第一天</h2><pre><code class="python">from fastapi import APIRouter # 导入了API的路由
+
+movie=APIRouter(tags=[&#39;电影相关&#39;])
+
+@movie.get(&#39;/movies&#39;,summary=&#39;电影列表&#39;)
+async def movie_list():
+    pass
+
+@movie.post(&#39;/movies&#39;,summary=&#39;新增电影&#39;)
+async def movie_create():
+    pass
+
+@movie.put(&#39;/movies&#39;,summary=&#39;编辑电影&#39;)
+async def movie_update():
+    pass
+
+@movie.delete(&#39;/movies&#39;,summary=&#39;删除电影&#39;)
+async def movie_delete():
+    pass
+</code></pre>
+<ul>
+<li>summary&#x3D;‘‘ 参数是一个内部描述，并不体现在web页面上</li>
+</ul>
+<p>学习如何设置路由，并且查看</p>
+<ol>
+<li><p>设置网站的目录结构</p>
+</li>
+<li><p><img src="/img/typora-user-images-2/image-20231028130607685.png" alt="image-20231028130607685"></p>
+</li>
+<li><pre><code class="py">from fastapi import APIRouter
+
+login=APIRouter(tags=[&#39;认证相关&#39;])
+
+@login.post(&#39;/login&#39;,summary=&#39;登陆&#39;)
+async def user_login():
+    pass
+
+先导入一个包
+再创建一个实例化的对象，并且给定标签（作用）
+然后给出对应函数的路由和方法
+</code></pre>
+</li>
+</ol>
+<h2 id="orm-促使程序员专注于数据库的操作，不用直接编写sql语句"><a href="#orm-促使程序员专注于数据库的操作，不用直接编写sql语句" class="headerlink" title="orm 促使程序员专注于数据库的操作，不用直接编写sql语句"></a>orm 促使程序员专注于数据库的操作，不用直接编写sql语句</h2><p>python导包</p>
+<p>依次是：</p>
+<pre><code>* 官方包
+* 三方包
+* 自己定义的包
+</code></pre>
+<h1 id="看了这么多的评论，问答，视频，发现学习fastapi急不得，脚踏实地，官方文档一步步走，满满的历练自己，可以的"><a href="#看了这么多的评论，问答，视频，发现学习fastapi急不得，脚踏实地，官方文档一步步走，满满的历练自己，可以的" class="headerlink" title="看了这么多的评论，问答，视频，发现学习fastapi急不得，脚踏实地，官方文档一步步走，满满的历练自己，可以的"></a>看了这么多的评论，问答，视频，发现学习fastapi急不得，脚踏实地，官方文档一步步走，满满的历练自己，可以的</h1><h2 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h2><p>利用async和await写异步代码</p>
+<h1 id="one-step-—Fast"><a href="#one-step-—Fast" class="headerlink" title="one step —Fast"></a>one step —Fast</h1><p>不同的http方法： 每一个HTTP方法都称为一个操作</p>
+<p>在开发 API 时，你通常使用特定的 HTTP 方法去执行特定的行为。</p>
+<p>通常使用：</p>
+<ul>
+<li><code>POST</code>：创建数据。</li>
+<li><code>GET</code>：读取数据。</li>
+<li><code>PUT</code>：更新数据。</li>
+<li><code>DELETE</code>：删除数据。</li>
+</ul>
+<p><code>@something</code> 语法在 Python 中被称为「装饰器」。</p>
+<p>在我们的例子中，这个装饰器告诉 <strong>FastAPI</strong> 位于其下方的函数对应着<strong>路径</strong> <code>/</code> 加上 <code>get</code> <strong>操作</strong>。</p>
+<p>它是一个「<strong>路径操作装饰器</strong>」。</p>
+<pre><code class="python">@app.get(&quot;/&quot;) # 路径操作装饰器
+</code></pre>
+<p><code>@app.get(&quot;/&quot;)</code> 告诉 <strong>FastAPI</strong> 在它下方的函数负责处理如下访问请求：</p>
+<ul>
+<li>请求路径为 <code>/</code></li>
+<li>使用 <code>get</code> 操作</li>
+</ul>
+<p>装饰器的作用主要有两个点：</p>
+<ol>
+<li>路由</li>
+<li>http操作方法</li>
+</ol>
+<pre><code class="python">@app.get(&quot;/&quot;)
+async def root():
+    return {&quot;message&quot;: &quot;Hello World&quot;}
+</code></pre>
+<p>2个点：</p>
+<ol>
+<li>使用get 并且访问url的根目录即&#x2F; 执行root函数</li>
+<li>返回内容 返回 dict str int list 和一些其他模型 Pydantic 模型</li>
+</ol>
+<p>还可以有其他的路径操作装饰器：</p>
+<ul>
+<li><code>@app.post()</code></li>
+<li><code>@app.put()</code></li>
+<li><code>@app.delete()</code></li>
+</ul>
+<hr>
+<h2 id="路径参数"><a href="#路径参数" class="headerlink" title="路径参数"></a>路径参数</h2><p>可以对函数传参</p>
+<pre><code class="python">@app.get(&quot;/items/{item_id}&quot;)
+async def read_item(item_id):
+    return {&quot;item_id&quot;: item_id}
+</code></pre>
+<p>可以将路径中的<code>{item_id}</code>作为一个参数进行传参，传递给read_item函数中</p>
+<p>注意 <strong>路由中给出的参数名必须要与函数中的参数名保持一致</strong></p>
+<p>除此之外，还可以对接受到的参数进行类型限制</p>
+<pre><code class="python">@app.get(&quot;/items/{item_id}&quot;)
+async def read_item(item_id: int):
+    return {&quot;item_id&quot;: item_id}
+</code></pre>
+<p>限定参数<code>item_id</code>是int类型的 如果是其他类型的，函数进行数据校验，得到一个http错误</p>
+<p>eg：</p>
+<pre><code class="http">{
+    &quot;detail&quot;: [
+        {
+            &quot;loc&quot;: [
+                &quot;path&quot;,
+                &quot;item_id&quot;
+            ],
+            &quot;msg&quot;: &quot;value is not a valid integer&quot;,
+            &quot;type&quot;: &quot;type_error.integer&quot;
+        }
+    ]
+}
+</code></pre>
+<p>FastApi有两个文档</p>
+<ol>
+<li>docs</li>
+<li>redoc</li>
+</ol>
+<h3 id="pydantic-数据校验"><a href="#pydantic-数据校验" class="headerlink" title="pydantic 数据校验"></a>pydantic 数据校验</h3><pre><code class="python">@app.get(&quot;/users/me&quot;)
+async def read_user_me():
+    return {&quot;user_id&quot;: &quot;the current user&quot;}
+
+
+@app.get(&quot;/users/{user_id}&quot;)
+async def read_user(user_id: str):
+    return {&quot;user_id&quot;: user_id}
+</code></pre>
+<p><code>@app.get(&quot;/users/me&quot;)</code> 一定是比 <code>@app.get(&quot;/users/{user_id}&quot;)</code>靠前，为了避免出现<code>/users/me</code>时，me被误作为user_id进行传参。</p>
+<p>查询参数要比路径参数靠前，不然查询参数如果设置了默认值是不会触发的</p>
+<p><strong>固定目录比传参目录一定要靠前</strong></p>
+<p>参数也可以是枚举类型的</p>
+<p>复习python中的枚举类型：</p>
+<pre><code class="python">from enum import Enum
+
+class ModelName(str, Enum):
+    alexnet = &quot;alexnet&quot;
+    resnet = &quot;resnet&quot;
+    lenet = &quot;lenet&quot;
+    
+@app.get(&quot;/models/{model_name}&quot;)
+async def get_model(model_name: ModelName):  
+    if model_name is ModelName.alexnet:
+        return {&quot;model_name&quot;: model_name, &quot;message&quot;: &quot;Deep Learning FTW!&quot;}
+
+    if model_name.value == &quot;lenet&quot;:
+        return {&quot;model_name&quot;: model_name, &quot;message&quot;: &quot;LeCNN all the images&quot;}
+
+    return {&quot;model_name&quot;: model_name, &quot;message&quot;: &quot;Have some residuals&quot;}
+</code></pre>
+<p><code>async def get_model(model_name: ModelName):</code> 这个异步函数，限定了参数一定是Modelname中的枚举变量 ，根据参数与枚举变量进行对比，最后确定返回值的内容。</p>
+<p>枚举类.属性名 得到这个枚举类型的值</p>
+<h3 id="路径参数-1"><a href="#路径参数-1" class="headerlink" title="路径参数"></a><strong>路径参数</strong></h3><pre><code class="python">@app.get(&quot;/files/{file_path:path}&quot;)
+</code></pre>
+<p>参数的名称为 <code>file_path</code>，<strong>结尾部分的 <code>:path</code> 说明该参数应匹配任意的<em>路径</em></strong>。</p>
+<p>路径变量，需要在装饰器变量后面加上:path</p>
+<p>tip：</p>
+<p>可能会需要参数包含 <code>/home/johndoe/myfile.txt</code>，以斜杠（<code>/</code>）开头。</p>
+<p>在这种情况下，URL 将会是 <code>/files//home/johndoe/myfile.txt</code>，在<code>files</code> 和 <code>home</code> 之间有一个双斜杠（<code>//</code>）。</p>
+<p>eg</p>
+<pre><code class="python">@app.get(&#39;/file/{file_path:path}&#39;)
+async def readfile(file_path:str):
+    a=&#39;&#39;
+    with open(file_path) as f:
+        for row in f:
+            a=a+row
+        return a
+</code></pre>
+<p><img src="/img/typora-user-images-2/image-20231030171120416.png" alt="image-20231030171120416"></p>
+<p>通过传参的方式，读取到一个文件中的内容</p>
+<hr>
+<h2 id="查询参数-：-URL-的-？-之后，并以-符号分隔"><a href="#查询参数-：-URL-的-？-之后，并以-符号分隔" class="headerlink" title="查询参数 ： URL 的 ？ 之后，并以 &amp; 符号分隔"></a><strong>查询参数 ： URL 的 <code>？</code> 之后，并以 <code>&amp;</code> 符号分隔</strong></h2><p>格式**<code>参数名：类型名[=默认值] []中的值可以省略，作为函数形参，省略后没有默认值</code> **</p>
+<p>声明不属于路径参数的其他函数参数时，它们将被自动解释为”查询字符串”参数</p>
+<p><strong>查询参数不是路径固定的一部分，查询参数是可选的</strong>，并且可以设置默认值</p>
+<p>eg：</p>
+<pre><code class="python">@app.get(&#39;/user&#39;)
+async def show_user(id :int=0):
+    return id
+</code></pre>
+<p><img src="/img/typora-user-images-2/image-20231030172309558.png" alt="image-20231030172309558"></p>
+<p><img src="/img/typora-user-images-2/image-20231030172322367.png" alt="image-20231030172322367"></p>
+<p><img src="/img/typora-user-images-2/image-20231030172335616.png" alt="image-20231030172335616"></p>
+<p>设置了默认值，所以&#x2F;user与&#x2F;user?id&#x3D;0是一样的效果</p>
+<p>路径参数需要写入装饰器中，查询参数只需要改变函数的参数即可。</p>
+<h4 id="默认参数：-q是一个默认参数-是一个int类型，不赋值就为None"><a href="#默认参数：-q是一个默认参数-是一个int类型，不赋值就为None" class="headerlink" title="默认参数： q是一个默认参数 是一个int类型，不赋值就为None"></a>默认参数： <strong>q是一个默认参数</strong> 是一个int类型，不赋值就为None</h4><pre><code class="python">@app.get(&#39;/user&#39;)
+async def show_user(id :int,q: int=None):
+    return id,q
+</code></pre>
+<h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><pre><code class="python">@app.get(&#39;/item/{item_id}&#39;)
+async def read_item(item_id:str,q:Union[str,None]=None,short:bool=False):
+    item={&#39;item_id&#39;:item_id}
+    if q:
+        item.update({&#39;q&#39;:q})
+    if not short:
+        item.update({
+            &#39;description&#39;:&#39;This is an amazing item that has a long description&#39;
+        })
+    return item
+</code></pre>
+<p>q:Union[str,None]&#x3D;None 这个是一个真正的可选参数，q有没有均可，没有的话就被设置为了None,有的话可以设置为str。在Union[str,None,int]也是可以的，q就可以是int类型的</p>
+<h4 id="必选参数：不带默认值的参数，路径参数是必选参数。"><a href="#必选参数：不带默认值的参数，路径参数是必选参数。" class="headerlink" title="必选参数：不带默认值的参数，路径参数是必选参数。"></a>必选参数：不带默认值的参数，路径参数是必选参数。</h4><p>FastApi解析bool类型时，会把常用的字符串解析为True</p>
+<p>eg ：true True yes 1</p>
+<p>一下字符串解析为No</p>
+<p>eg：False false no 0</p>
+<p>eg：</p>
+<pre><code class="python">@app.get(&#39;/item/{item_id}&#39;)
+async def read_item(item_id:str,q:Union[str,None]=None,short:bool=False):
+    item={&#39;item_id&#39;:item_id}
+    if q:
+        item.update({&#39;q&#39;:q})
+    if not short:
+        item.update({
+            &#39;description&#39;:&#39;This is an amazing item that has a long description&#39;
+        })
+    return item
+</code></pre>
+<p><img src="/img/@app.get(%22/files/%7Bfile_path:path%7D%22" alt="image-20231031161729240"><br>&#x2F;image-20231031161729240.png)</p>
+<p><img src="/img/typora-user-images-2/image-20231031161744766.png" alt="image-20231031161744766"></p>
+<p><code>Union[str,None]</code>表示这个变量可以是字符串或者None。Union[]表示可以是里面的任意一种类型。</p>
+<h4 id="多个路径参数和查询参数"><a href="#多个路径参数和查询参数" class="headerlink" title="多个路径参数和查询参数"></a>多个路径参数和查询参数</h4><p>不需要以任何特定的顺序来声明，<strong>FastAPI</strong> 能够正确识别。</p>
+<h2 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h2><p>client——&gt; API</p>
+<p>响应体</p>
+<p>API——-&gt;Client</p>
+<p>&nbsp;</p>
+<p>使用pydantic模型来声明请求体    不能使用Get操作发送请求体</p>
+<p>使用<code>POST</code>（较常见）、<code>PUT</code>、<code>DELETE</code> 或 <code>PATCH</code>。</p>
+<pre><code class="python">class Item(BaseModel):
+    name:str
+    describe: Union[str,None]=None
+    price: float
+    tax: Union[float,None]=None
+
+@app.post(&quot;/items/&quot;)
+async def create_item(item: Item):
+    item_dict = item.model_dump()
+    if item.tax:
+        price_with_tax = item.price + item.tax
+        item_dict.update({&quot;price_with_tax&quot;: price_with_tax})
+    return item_dict
+</code></pre>
+<p>需要自己定义post的数据类型，有可以省略的参数，也有不可以省略的参数。<br><img src="/img/_resources/6b48e8341b695d9ff9a2c262b30b3a56.png" alt="6b48e8341b695d9ff9a2c262b30b3a56.png"></p>
+<p>通过class 数据体名(BaseModel) 通过继承pydantic来实现自己的数据包</p>
+<p>函数参数将依次按如下规则进行识别：</p>
+<ul>
+<li>如果在路径中也声明了该参数，它将被用作路径参数。</li>
+<li>如果参数属于单一类型（比如 int、float、str、bool 等）它将被解释为查询参数。</li>
+<li>如果参数的类型被声明为一个 Pydantic 模型，它将被解释为请求体。</li>
+</ul>
+<p>eg</p>
+<pre><code class="python">class Item(BaseModel):
+  name:str
+  describe: Union[str,None]=None
+  price: float
+  tax: Union[float,None]=None
+
+@app.put(&quot;/items/{item_id}&quot;)
+async def create_item(item_id: int, item: Item, q: Union[str, None] = None):
+  result = {&quot;item_id&quot;: item_id, **item.model_dump()}   # model_dump 把对象转化为字典对象
+  if q:
+      result.update({&quot;q&quot;: q})
+  return result
+</code></pre>
+<p>这个例子中，item_id是路径参数，q是str类型的可选参数，是单一参数。<br><strong>item参数是Item类型的，是Pydantic 模型，它将被解释为请求体</strong><br>所以Fastapi会自动识别pydantic模型，并且把这个模型识别为请求体</p>
+<p><img src="/img/_resources/26240453a974cf4bb2b1599ba62b2a2a.png" alt="26240453a974cf4bb2b1599ba62b2a2a.png"></p>
+<h2 id="查询参数和字符串校验"><a href="#查询参数和字符串校验" class="headerlink" title="查询参数和字符串校验"></a>查询参数和字符串校验</h2><h4 id="额外的校验-从fastapi导入query"><a href="#额外的校验-从fastapi导入query" class="headerlink" title="额外的校验 从fastapi导入query"></a>额外的校验 从fastapi导入query</h4><pre><code class="python">from fastapi import FastAPI,Query
+
+@app.get(&quot;/items_2/&quot;)
+async def read_items(q: Union[str, None] = Query(default=None, max_length=50)):
+  results = {&quot;items&quot;: [{&quot;item_id&quot;: &quot;Foo&quot;}, {&quot;item_id&quot;: &quot;Bar&quot;}]}
+  if q:
+      results.update({&quot;q&quot;: q})
+  return results
+</code></pre>
+<p>使用Query设置了默认值，和最大的长度等额外的限制</p>
+<p>可以添加正则表达式</p>
+<pre><code class="python">from typing import Union
+
+from fastapi import FastAPI, Query
+
+app = FastAPI()
+
+
+@app.get(&quot;/items/&quot;)
+async def read_items(
+    q: Union[str, None] = Query(
+        default=None, min_length=3, max_length=50, pattern=&quot;^fixedquery$&quot;
+    ),
+):
+    results = {&quot;items&quot;: [{&quot;item_id&quot;: &quot;Foo&quot;}, {&quot;item_id&quot;: &quot;Bar&quot;}]}
+    if q:
+        results.update({&quot;q&quot;: q})
+    return results
+</code></pre>
+<ul>
+<li>^：以该符号之后的字符开头，符号之前没有字符。</li>
+<li>fixedquery: 值精确地等于 fixedquery。</li>
+<li>$: 到此结束，在 fixedquery 之后没有更多字符。</li>
+</ul>
+<p><code>pattern=&quot;^fixedquery$&quot;</code> 表示q这个参数，只能是fixedquery这个字符串。可以学习fastAPi的正则表达式</p>
+<h4 id="使用Query声明为一个必要参数，不能使用default参数"><a href="#使用Query声明为一个必要参数，不能使用default参数" class="headerlink" title="使用Query声明为一个必要参数，不能使用default参数"></a>使用Query声明为一个必要参数，不能使用default参数</h4><pre><code class="python">q: Union[str, None] = Query(default=None, min_length=3)
+</code></pre>
+<p>此时q是由default参数，不是一个必选参数</p>
+<p>不需要申请default参数就是必选参数</p>
+<p>也可以使用default&#x3D;…来声明一个必选参数，即使这个参数的默认值是None也是可以的</p>
+<pre><code class="python">from typing import Union
+
+from fastapi import FastAPI, Query
+
+app = FastAPI()
+
+
+@app.get(&quot;/items/&quot;)
+async def read_items(q: Union[str, None] = Query(default=..., min_length=3)):
+    results = {&quot;items&quot;: [{&quot;item_id&quot;: &quot;Foo&quot;}, {&quot;item_id&quot;: &quot;Bar&quot;}]}
+    if q:
+        results.update({&quot;q&quot;: q})
+    return results
+</code></pre>
+<p>声明一个可多次出现的参数q,可以用一个列表去接受参数</p>
+<pre><code class="python">from typing import List, Union
+
+from fastapi import FastAPI, Query
+
+app = FastAPI()
+
+
+@app.get(&quot;/items/&quot;)
+async def read_items(q: Union[List[str], None] = Query(default=None)):
+    query_items = {&quot;q&quot;: q}
+    return query_items
+</code></pre>
+<p>List[str] 与 list list[str] 会检测参数列表，如果不是str则会出错，list[int]的效果会更明显</p>
+<p>list则不会检测数据的类型，任何类型均可。</p>
+<p><strong>使用了list[int]</strong></p>
+<pre><code class="python">@app.get(&quot;/items_3/&quot;)
+async def read_items(q: Union[list[int], None] = Query(default=[1, 2])):
+    query_items = {&quot;q&quot;: q}
+    return query_items
+</code></pre>
+<p><strong>使用了list</strong></p>
+<pre><code class="python">@app.get(&quot;/items_3/&quot;)
+async def read_items(q: Union[list, None] = Query(default=None)):
+    query_items = {&quot;q&quot;: q}
+    return query_items
+</code></pre>
+<p><strong>list不需要加[] 加上类型的话需要加上[type]</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>通用的校验和元数据：</p>
+<ul>
+<li>alias</li>
+<li>title</li>
+<li>description</li>
+<li>deprecated</li>
+</ul>
+<p>特定于字符串的校验：</p>
+<ol>
+<li>min_length</li>
+<li>max_length</li>
+<li>regex</li>
+</ol>
+<p><strong>别名参数: alias</strong><br>eg:</p>
+<pre><code class="python">@app.get(&quot;/items/&quot;)
+async def read_items(q: Union[str, None] = Query(default=None, alias=&quot;item-query&quot;)):
+    results = {&quot;items&quot;: [{&quot;item_id&quot;: &quot;Foo&quot;}, {&quot;item_id&quot;: &quot;Bar&quot;}]}
+    if q:
+        results.update({&quot;q&quot;: q})
+    return results
+</code></pre>
+<p>这个就在Query()中设置了,alias参数,设置了q的别名,<strong>该别名将用于在 URL 中查找查询参数值</strong></p>
+<p><img src="/img/imgs/">Pasted image 20231103221636.png]]</p>
+<p>还可以弃用参数   <code>deprecated=True</code>  <code>deprecated</code>是个Query里面的一个属性值.</p>
+<pre><code class="python">from typing import Union
+
+from fastapi import FastAPI, Query
+
+app = FastAPI()
+
+
+@app.get(&quot;/items/&quot;)
+async def read_items(
+    q: Union[str, None] = Query(
+        default=None,
+        alias=&quot;item-query&quot;,
+        title=&quot;Query string&quot;,
+        description=&quot;Query string for the items to search in the database that have a good match&quot;,
+        min_length=3,
+        max_length=50,
+        pattern=&quot;^fixedquery$&quot;,
+        deprecated=True,
+    ),
+):
+    results = {&quot;items&quot;: [{&quot;item_id&quot;: &quot;Foo&quot;}, {&quot;item_id&quot;: &quot;Bar&quot;}]}
+    if q:
+        results.update({&quot;q&quot;: q})
+    return results
+</code></pre>
+<h2 id="路径参数和数值校验"><a href="#路径参数和数值校验" class="headerlink" title="路径参数和数值校验"></a>路径参数和数值校验</h2><p>先了解一下annotated的简介:</p>
+<p>在Python中，”Annotated”通常指的是类型注解（Type Hints）。类型注解是Python 3.5引入的一项功能，它允许开发人员在代码中添加类型信息，以帮助开发人员更好地理解代码的预期行为，并提高代码的可读性和可维护性。</p>
+<p>类型注解可以用于变量、函数参数和返回值等。通过使用类型注解，开发人员可以明确指定变量的数据类型，以及函数参数和返回值的类型。这有助于开发人员更好地理解代码，并可以在代码执行期间进行静态类型检查，以发现潜在的错误和不一致性。</p>
+<p>eg:</p>
+<pre><code class="python">def greet(name: str) -&gt; str: return &quot;Hello, &quot; + name age: int = 30
+</code></pre>
+<p><code>-&gt; str</code> 表示的是返回值是str类型的 各种变量名冒号之后的是 类型   “Annotated”通常指的是类型注解（Type Hints）  就是增加了一个类型注解</p>
+<p>使用Annotated</p>
+<pre><code class="python">from typing import Annotated
+
+from fastapi import FastAPI, Path, Query
+
+app = FastAPI()
+
+
+@app.get(&quot;/items/{item_id}&quot;)
+async def read_items(
+    item_id: Annotated[int, Path(title=&quot;The ID of the item to get&quot;)],
+    q: Annotated[str | None, Query(alias=&quot;item-query&quot;)] = None,
+):
+    results = {&quot;item_id&quot;: item_id}
+    if q:
+        results.update({&quot;q&quot;: q})
+    return results
+
+</code></pre>
+<p><code> item_id: Annotated[int, Path(title=&quot;The ID of the item to get&quot;)],</code>  表示item_id是一个int<strong>并且</strong>是一个Path参数</p>
+<p><strong>只要是Path参数是不能省略的,因为他是参数的一部分</strong><br><code> q: Annotated[str | None, Query(alias=&quot;item-query&quot;)] = None,</code>  这个q参数,就是一个str<strong>或者是</strong> None的一个参数  并且用Query的alias属性设置了一个查询参数</p>
+<p>对参数进行排序:</p>
+<p>数据校验: </p>
+<pre><code class="python">from fastapi import FastAPI, Path
+
+app = FastAPI()
+
+
+@app.get(&quot;/items/{item_id}&quot;)
+async def read_items(
+    *, item_id: int = Path(title=&quot;The ID of the item to get&quot;, ge=1), q: str
+):
+    results = {&quot;item_id&quot;: item_id}
+    if q:
+        results.update({&quot;q&quot;: q})
+    return results
+</code></pre>
+<p>进行数据校验,<code>ge=1</code> 表示 item_id是一个必须大于或等于1的整数.</p>
+<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><p>fastapi是更倾向于数据接口的开发</p>
+<p>更是适配与前后端分离的趋势</p>
+<p>FastApi的<strong>两个核心<code>Starlette</code>和<code>Pydantic</code></strong></p>
+<p>starlette 负责web部分(Asyncio)  异步的web服务   python3.5+<br>    1. starlette是一个轻量级的ASGI框架  在这个基础上完成了异步web服务<br>    2. ![[Pasted image 20231104154512.png]]</p>
+<p>Pydantic 负责数据部分 (类型提示)<br>    1. typing 是python3.6引入的一个类型提示</p>
+<p><code>**打散</code>传参的时候是按照关键字进行传参<br><code>*</code> 是按照位置进行传参<br><code>repr</code>是看原始的数据格式</p>
+<p>http是一个基于tcp的应用上层协议</p>
+<p>http协议  只有客户端发送请求  服务端进行响应     服务端不会主动的去给客户端发送响应</p>
+<p><strong>请求响应模式</strong>    有请求必须要有响应</p>
+<p>无状态保存   对于服务器而言,一次请求就是一次单独的,之前的任何服务器对于客户的请求,服务器一概不知.</p>
+<p>但是有时候需要进行记录  所以产生了cookie和session机制</p>
+<p>websocket   服务器可以主动的推送</p>
+<p>![Pasted image 20231104163127.png](&#x2F;img&#x2F;imgs&#x2F;Pasted image 20231104163127.png)</p>
+<p>完整的URL 包含<br>    协议 路径 ip 端口 参数</p>
+<p>HTTP请求首行  包含三个部分  1. 请求方式  2. 请求路径   3. 请求协议<br><img src="/img/imgs/">Pasted image 20231104170400.png]]</p>
+<p>content-type:  很重要的请求头</p>
+<p><strong>决定了(服务端)如何处理请求体里面的数据</strong>   json  urlencoded   传文件 formdata格式  让服务器能够看懂我们客户端给他发的是什么</p>
+<p>服务端得到<code>post</code>请求的时候,先获取到<code>content-type</code>这个字段,然后根据这个字段,获取到body中的数据格式,获取到body的数据,进行<code>解包</code></p>
+<p><strong>决定了客户端如何渲染得到的数据</strong> </p>
+<p>响应首行  1.协议版本  2. 状态码   3. ok<br>响应头</p>
+<p>利用所学构建一个HTTP server</p>
+<pre><code class="python">import socket  
+  
+sock = socket.socket()  
+sock.bind((&#39;127.0.0.1&#39;, 8080))   # bind需要的参数是一个元组,把绑定的ip和对应的端口号放入这个元组中  
+sock.listen(5)   # 5是等待的最大数量
+  
+while True:  
+    conn, addr = sock.accept()  # conn 是客户端通信的管道 管道是双向的(可收可发)   conn.send   conn.receive  全双工的管道  
+    data = conn.recv(1024)  # 取1k的数据  
+    print(data)  
+  
+    conn.send(b&#39;HTTP/1.1 200 ok\r\n\r\nhello word&#39;)  
+    conn.close() 
+</code></pre>
+<p>如果没有HTTP&#x2F;1.1 200 ok 等 浏览器会报错<br><img src="/img/imgs/">Pasted image 20231104223023.png]]<br>不加上就会爆出错误   目前测试在<code>firefox</code>上不会报错,但是在<code>chrome</code>上会爆出错误.</p>
+<p>对应代码:</p>
+<pre><code class="python">import socket  
+  
+sock = socket.socket()  
+sock.bind((&#39;127.0.0.1&#39;, 8080))   # bind需要的参数是一个元组,把绑定的ip和对应的端口号放入这个元组中  
+sock.listen(5)  
+  
+while True:  
+    conn, addr = sock.accept()  # conn 是客户端通信的管道 管道是双向的(可收可发)   conn.send   conn.receive  全双工的管道  
+    data = conn.recv(1024)  # 取1k的数据  
+    print(data)  
+  
+    conn.send(b&#39;hello word&#39;)  
+    conn.close()
+</code></pre>
+<p><img src="/img/imgs/">Pasted image 20231104223134.png]]</p>
+<p>content-type在响应头里面决定了用户端的页面渲染类型</p>
+<pre><code class="python">import socket  
+  
+sock = socket.socket()  
+sock.bind((&#39;127.0.0.1&#39;, 8090))   # bind需要的参数是一个元组,把绑定的ip和对应的端口号放入这个元组中  
+sock.listen(5)  
+  
+while True:  
+    conn, addr = sock.accept()  # conn 是客户端通信的管道 管道是双向的(可收可发)   conn.send   conn.receive  全双工的管道  
+    data = conn.recv(1024)  # 取1k的数据  
+    print(data)  
+  
+    conn.send(b&#39;HTTP/1.1 200 ok\r\ncontent-type:application/json\r\n\r\nhello word&#39;)  
+    conn.close()
+</code></pre>
+<p><code>这里面设置了content-type 所以postman可以解析出来字符串</code></p>
+<p><code>raw</code> 原始数据   <code>pretty</code> 格式化后的数据</p>
+<h2 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h2><p>前后端分离主要说的是职责分离</p>
+<p>前后端不分离:<br>![Pasted image 20231105093111](&#x2F;img&#x2F;imgs&#x2F;Pasted image 20231105093111.png)<br> 后端既要处理数据,又要处理页面,最后把数据嵌入到页面中</p>
+<hr>
+<p>![Pasted image 20231105093252](&#x2F;img&#x2F;imgs&#x2F;Pasted image 20231105093252.png)</p>
+<p>前后端分离,不关心前端,后端只关注对与数据的操作.  后端服务器只提供数据.  一般只返回一个json数据</p>
+<p>API:  一个url可以映射到对应的类和方法<br>restful接口开发规范  为web开发定义API接口的设计风格   面向资源开发   和 RPC  </p>
+<p>摒弃掉这种开发模式,不是restful规定的    要基于不同的请求方式来表达请求的目的.因为操作一个资源的路径是相同的  就要辨别怎么操作<br><img src="/img/imgs/" alt="Pasted image 20231105094345.png">   </p>
+<p>获取到请求方式,来获取到需要进行对应的操作</p>
+<p><img src="/img/imgs/">Pasted image 20231105094753.png]]</p>
+<p>路径操作装饰器的参数:</p>
+<p><code>tags=[&#39;&#39;]</code>  增加对一个接口的标题<br><code>summary=&#39;&#39;</code>  概述<br><code>description</code>&#x3D;’’  详细描述<br><code>response_description</code>&#x3D;’’  响应的注解<br><code>deprecated=True</code> 废弃了这个接口  </p>
+<p><code>include_router</code> 将不同子应用的路由进行分发和结藕<br>先把子应用所在的包导入进来.</p>
+<pre><code class="python">form apps import *
+
+app=FastAPI()
+
+app.include_routers(app01,prefix=&#39;/app01/&#39;,tags=[&#39;这个是app01&#39;])
+
+
+# 子路由设置为 apirouter
+
+
+</code></pre>
+<p>注意三个参数  第一个参数apirouter的对象,设置一下前缀<code>prefix</code>,和标签<code>tags</code></p>
+<p>目录结构:<br><img src="/img/imgs/">Pasted image 20231105140031.png]]</p>
+<p>apps.shop.urls里面的代码:    </p>
+<pre><code class="python">from  fastapi import  APIRouter  
+  
+shop=APIRouter()  
+  
+@shop.get(&#39;/food&#39;)  
+async def shop_food():  
+    return {&#39;shop&#39;:&#39;food&#39;}  
+  
+@shop.get(&#39;/bed&#39;)  
+async def shop_food():  
+    return {&#39;bed&#39;:&#39;bed&#39;}
+</code></pre>
+<p>apps.users.urls里面的代码与这个基本一致</p>
+<p>main中的代码:</p>
+<pre><code class="python">from apps.shop.urls import shop  
+from apps.users.urls import user
+app.include_router(shop,prefix=&#39;/shop&#39;,tags=[&#39;购物中心&#39;])  
+app.include_router(user,prefix=&#39;/user&#39;,tags=[&#39;用户中心&#39;])
+</code></pre>
+<p>在fastAPI的文档中:<br><img src="/img/imgs/">Pasted image 20231105140802.png]]</p>
+<p><strong>开发时,更多的是使用include_router这种方法</strong></p>
+<p>应该把文档写的尽可能的详细</p>
+<p>eg:<br><img src="/img/imgs/">Pasted image 20231105105450.png]]</p>
+<h2 id="请求与响应"><a href="#请求与响应" class="headerlink" title="请求与响应"></a>请求与响应</h2><h3 id="路径参数-2"><a href="#路径参数-2" class="headerlink" title="路径参数"></a>路径参数</h3><p>根据路由匹配时，从上至下只要匹配上，下面的就不匹配</p>
+<pre><code class="python">from fastapi import APIRouter  
+  
+user = APIRouter()  
+  
+  
+@user.get(&#39;/1&#39;)  
+async def get_user():  
+    return {&#39;user&#39;:&#39;hello root!&#39;}  
+  
+@user.get(&#39;/{id}&#39;)  
+async def get_user(id: int):  
+    return {&#39;user_id&#39;: id}
+</code></pre>
+<p>eg：<br><img src="/img/imgs/">Pasted image 20231106194520.png]]</p>
+<p>这个就是先匹配到了写死的的那个函数里面，所以返回的并不是id的值，而是另外一个  所以说<strong>路由匹配的顺序很重要</strong></p>
+<p>路径参数在blog等平台会用的多一些，其他的平台查询参数用的不多</p>
+<h3 id="查询参数："><a href="#查询参数：" class="headerlink" title="查询参数："></a>查询参数：</h3><pre><code class="python">from fastapi import  APIRouter  
+  
+app02=APIRouter()  
+  
+@app02.get(&#39;/&#39;)  
+async def find_jobs(xl,gj,kd):  
+    return {  
+        &#39;xl&#39;:xl,  
+        &#39;gj&#39;:gj,  
+        &#39;kd&#39;:kd,  
+    }
+</code></pre>
+<p>eg：  路径参数会显示出path  查询参数是query<br><img src="/img/imgs/">Pasted image 20231106200432.png]]<br>查询参数和路径参数均可以混用</p>
+<p>&#96;&#96;<br><code>async def find_jobs(xl,gj:Union[str,None],kd=None):</code><br>Union[str,None] 方括号里面的是类型  表示 gj参数可以是 str和None,但此时仍是一个必选参数，如果想变成一个可选参数。<code>Union[str,None]=None</code>  就是一个默认值。并且已经限定了可以是那种类型的。  Union就可以是设置一个参数有多类型。<br><code>gj:Union[int,None,float]=None</code>  表示gj可以有三种类型 分别是 <code>int</code> <code>float</code> <code>None</code> 三种类型。并且默认值是None</p>
+<p><code>Optional[int]=None</code> 完全等于 <code>Union[int,None]=None</code>  但是注意 Optional只能有一个参数，不可以有多个</p>
+<h3 id="请求体数据"><a href="#请求体数据" class="headerlink" title="请求体数据"></a>请求体数据</h3><p>FastApi 基于 pydantic进行校验数据   进行数据校验的速度很快</p>
+<pre><code class="python">class User(BaseModel):  
+    name: str  
+    age: int  
+    birth: date  
+    friends: List[int]  # List[int]  对list中的数据类型进行了限定，是int类型的  
+  
+  
+@app03.post(&#39;/&#39;)  
+async def data(user: User):  
+    return user
+    ```
+可以看到  fastapi可以直接返回一个自定义的数据类型，fastapi会自动的转化为json格式，进行发包。
+
+python收到一个json包，会先转换为字典，然后会校验这个字典中的内容，没什么问题之后，把字典中的字段和值转化为一个对象，在return 对象时，会发生把对象转化为json格式。
+
+pydantic  当类型不一致时，不一定报错，会进行类型转换，当转换不过来的时候，才会报错。
+
+```python
+from fastapi import APIRouter  
+from pydantic import BaseModel, Field,  field_validator  
+from datetime import date  
+  
+from typing import List, Union, Optional  
+  
+app03 = APIRouter()  
+  
+  
+class User(BaseModel):  
+    name: str=&#39;root&#39;  
+    age: int=Field(ge=1,le=100)  # ge 小于   le 大于  
+    birth: Union[date,None]=None  
+    friends: List[int]=[]# List[int]  对list中的数据类型进行了限定，是int类型的  
+    description:Optional[str]=None  
+  
+    @field_validator(&#39;name&#39;)  
+    def judg_name(cls,name):  
+        assert name.isalpha(), &quot;name must be alpha&quot;  
+        return name  
+  
+@app03.post(&#39;/&#39;)  
+async def data(user: User):  
+    return user
+</code></pre>
+<p>可以加上各种限定和默认值，取值范围等。</p>
+<p>可以在自定义类型中加上函数自己去任意限定字段的取值。<br><strong>需要引入<code>pydantic</code>的<code>field_validator</code>  然后就可以用了</strong></p>
+<p>除此之外还可以嵌套自定义类型</p>
+<p>eg</p>
+<pre><code class="python">  
+class Addr(BaseModel):  
+    province:str  
+    city:str  
+      
+class User(BaseModel):  
+    name: str=&#39;root&#39;  
+    age: int=Field(ge=1,le=100)  # ge 小于   le 大于  
+    birth: Union[date,None]=None  
+    friends: List[int]=[]# List[int]  对list中的数据类型进行了限定，是int类型的  
+    description:Optional[str]=None  
+    addr:Optional[Addr]=None  
+  
+    @field_validator(&#39;name&#39;)  
+    def judg_name(cls,name):  
+        assert name.isalpha(), &quot;name must be alpha&quot;  
+        return name  
+  
+@app03.post(&#39;/&#39;)  
+async def data(user: User):  
+    return user
+    
+</code></pre>
+<p>先定义了一个自定义类型的Addr类型</p>
+<p>然后在自定义类型User中使用了这个Addr类型，这个就是嵌套定义。可以嵌套使用。</p>
+<h4 id="form表单"><a href="#form表单" class="headerlink" title="form表单"></a>form表单</h4><p>form表单是来自于fastapi里面的<br>pydantic不属于fastapi<br>form表单格式是fastapi自带的</p>
+<p>form表单使用post请求时的content-type是www-urlencoded格式不是json格式。</p>
+<pre><code class="python">from fastapi import APIRouter  
+from pydantic import BaseModel, Field, field_validator  
+from datetime import date  
+  
+from typing import List, Union, Optional  
+  
+from fastapi import Form  
+  
+app04 = APIRouter()  
+  
+  
+@app04.post(&#39;/&#39;)  
+async def user(username: str = Form(), password: str = Form()):  
+    print(f&quot;username:{username} password:{password}&quot;)  
+    return {  
+        &#39;username&#39;:username  
+    }
+</code></pre>
+<p><code>username: str = Form()</code> 通过这种方式设置一个Form表单格式<br><code>password: str = Form()</code> </p>
+<p>这样只能通过这样传参<br><img src="/img/imgs/">Pasted image 20231107141423.png]]</p>
+<h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><p>文件上传会有另外一种content-type：面对大的字节流的一种处理类型</p>
+<p>fastapi中的file类型是一个对象直接接收了全部的文件内容，全部放到内存中去。只能上传小的文件。UploadFile类型可以上传大文件，得到的是一个文件的句柄。可以大大的减少对内存的压力。</p>
+<pre><code class="python">import os  
+  
+from fastapi import APIRouter, UploadFile  
+  
+from fastapi import APIRouter  
+from pydantic import BaseModel, Field, field_validator  
+from datetime import date  
+  
+from typing import List, Union, Optional  
+  
+app05 = APIRouter()  
+  
+from fastapi import Form, File  
+  
+  
+@app05.post(&#39;/&#39;)  
+async def upload(file: bytes = File()):  # 直接把文件载入内存，文件太大内存不够容易崩溃  
+    return {&#39;len(file)&#39;: len(file)}  
+  
+  
+#  使用文件句柄的方式操作文件，适合大文件传输  使用fastapi的uploadfile  
+  
+@app05.post(&#39;/files&#39;)  
+async def upload_files(file: UploadFile):  
+    path = os.path.join(&#39;file&#39;, file.filename)  
+    with open(path, &#39;wb&#39;) as f:  
+        for line in file.file:  
+            f.write(line)  
+    return {  
+        &#39;file_len&#39;: file.size  
+    }
+
+#  使用文件句柄的方式操作文件，适合大文件传输  使用fastapi的uploadfile  
+  
+@app05.post(&#39;/files&#39;)  # 上传一个文件，并且写入硬盘中  
+async def upload_files(file: UploadFile):  
+    path = os.path.join(&#39;file&#39;, file.filename)  
+    with open(path, &#39;wb&#39;) as f:  
+        for line in file.file:  
+            f.write(line)  
+    return {  
+        &#39;file_len&#39;: file.size  
+    }  
+  
+@app05.post(&#39;/more_files&#39;)   # 上传多个文件  
+async def upload_files(files: List[UploadFile]):  
+    a={}  
+    for file  in files:  
+        a[file.filename]=file.size  
+    return a
+</code></pre>
+<p>可以上传多个文件，使用upload可以极大的缓解内存的压力，使用句柄操作。</p>
+<h3 id="request-对象"><a href="#request-对象" class="headerlink" title="request 对象"></a>request 对象</h3><pre><code class="python">from fastapi import APIRouter,Request  
+  
+app06=APIRouter()  
+  
+@app06.get(&#39;/&#39;)  
+async def item(request:Request):  
+    return {  
+        &#39;url&#39;:request.url,  
+        &#39;cookie&#39;:request.cookies,  
+        &#39;user-agent&#39;:request.headers.get(&#39;user-agent&#39;),  
+        &#39;ip&#39;:request.client.host,  
+        &#39;port&#39;:request.client.port  
+    }
+</code></pre>
+<p>本质上就是获取发送方的信息  获取到的url和cookie是一个字典形式的。</p>
+<h3 id="请求静态文件"><a href="#请求静态文件" class="headerlink" title="请求静态文件"></a>请求静态文件</h3><p>搞清楚两个概念<br>    1. 静态文件和动态文件<br>    2. 静态网站和动态网站</p>
+<p>静态网站：就是提前把html等一些文件放入服务器，访问者直接访问这个文件即可<br>动态网站，会根据请求动态的显示不同的页面<br><img src="/img/imgs/">Pasted image 20231107152859.png]]<br>除此之外，我们还需要静态的网页，所以可以开放出一个文件夹，显示这个文件夹中的静态网页。其他的文件夹肯定是不能访问的。</p>
+<p>使用fastapi中的staticfile</p>
+<pre><code class="python">app.mount(&#39;/static&#39;, StaticFiles(directory=&#39;file&#39;))
+</code></pre>
+<p>地一个参数是路由，第二个参数是真正的文件位置</p>
+<h4 id="响应参数"><a href="#响应参数" class="headerlink" title="响应参数"></a>响应参数</h4><p>response_model是路径操作上的参数，不是路径函数上的参数</p>
+<pre><code class="python">@app.post(&#39;/&#39;,response_model=Item)
+</code></pre>
+<p>有输入的数据模型，也可以有输出的数据模型</p>
+<p><strong>response_model&#x3D;Item</strong></p>
+<pre><code class="python">from fastapi import APIRouter  
+  
+from fastapi.staticfiles import StaticFiles  
+from pydantic import BaseModel, EmailStr  
+from typing import Union  
+  
+app07 = APIRouter()  
+  
+  
+class User(BaseModel):    # 输入的数据模型
+    username: str  
+    password: str  
+    email: EmailStr  
+    full_name: Union[str, None] = None  
+  
+  
+class Userout(BaseModel):  # 输出的数据模型
+    username: str  
+    email: EmailStr  
+    full_name: Union[str, None] = None  
+  
+  
+@app07.post(&#39;/&#39;, response_model=Userout) # 输出的时候按照输出的数据模型
+async def creat_user(user: User):  
+    return user
+</code></pre>
+<p>eg<br><img src="/img/imgs/">Pasted image 20231108164505.png]]<br><strong>response_model_exclude_unset</strong></p>
+<p>排除没有设置的值，返回的值如果有一些是默认的并且没有被设置的，不返回</p>
+<p><strong>response_model_exclude_default</strong>  不要默认值的<br><strong>response_model_exclude_none</strong>  结果为None的值不要<br><strong>response_model_exclude&#x3D;{}</strong>   后面是一个集合 排除那些字段<br><strong>response_model_include&#x3D;{}</strong>   后面是一个集合 包含那些字段 </p>
+<h4 id="jinja2模板（但凡使用模板，前后端都是不分离的）"><a href="#jinja2模板（但凡使用模板，前后端都是不分离的）" class="headerlink" title="jinja2模板（但凡使用模板，前后端都是不分离的）"></a>jinja2模板（但凡使用模板，前后端都是不分离的）</h4><p>变量控制结构：<code>{% %}</code><br>变量取值：<code>{{}}</code></p>
+<p>既要处理数据，又要渲染模板文件，称为前后端不分离</p>
+<ol>
+<li>深度查询</li>
+</ol>
+<pre><code class="html">&lt;ul&gt;  
+    &lt;li&gt;{{book.0}}&lt;/li&gt;  
+    &lt;li&gt;{{bool.1}}&lt;/li&gt;  
+    &lt;li&gt;{{book.2}}&lt;/li&gt;  
+    &lt;li&gt;{{book.3}}&lt;/li&gt;  
+&lt;/ul&gt;
+</code></pre>
+<p>访问列表中的属性用<code>.</code>而不是<code>[]</code><br>2. 过滤器<br><img src="/img/imgs/">Pasted image 20231110132438.png]]<br>进行前端页面渲染的  业务逻辑层的数据在模板处进行一个展示</p>
+<pre><code class="html">{% if age&gt;18 %}     /* 进行判断是否要进行展示这些内容 */
+&lt;ul&gt;  
+    &lt;li&gt;{{books.0}}&lt;/li&gt;  
+    &lt;li&gt;{{books.1}}&lt;/li&gt;  
+    &lt;li&gt;{{books.2}}&lt;/li&gt;  
+    &lt;li&gt;{{books.3}}&lt;/li&gt;  
+&lt;/ul&gt;  
+  
+{% else %}  
+  
+&lt;ul&gt;  
+    &lt;li&gt;猫和老鼠&lt;/li&gt;  
+    &lt;li&gt;黑豹警长&lt;/li&gt;  
+    &lt;li&gt;熊出没&lt;/li&gt;  
+&lt;/ul&gt;  
+  
+  
+  
+{%endif%}
+</code></pre>
+<p>&#96;&#96;<br><code>if</code>就是一个逻辑判断，在html中，判断的是<code>if  else </code>中的内容是否根据条件进行渲染，并不是html中的代码不执行    会根据年龄的大小，进行不同的页面渲染</p>
+<pre><code class="html">&lt;ul&gt;  
+    {% for book in books %}  
+    &lt;li&gt;{{book}}&lt;/li&gt;  
+    {% endfor %}  
+&lt;/ul&gt;
+</code></pre>
+<p>jinja2使用for循环</p>
+<h4 id="ORM（Object-Relational-Mapping）-对象关系映射"><a href="#ORM（Object-Relational-Mapping）-对象关系映射" class="headerlink" title="ORM（Object Relational Mapping） 对象关系映射"></a>ORM（<strong>Object Relational Mapping</strong>） 对象关系映射</h4><p>related_name  字段反向查询     </p>
+<p>一个学生对应一个班级   一个班级对应多个学生   </p>
+<p>学生找班级    student.clas</p>
+<p>班级找学生  就需要用 related_name这个字段了   反向查找</p>
+<p><img src="/img/imgs/">Pasted image 20231111190215.png]]</p>
+<p>使用aerich进行数据库迁移</p>
+<p>初始化配置文件 一般只是刚开始用<br>aerich init -t 路径   </p>
+<p>aerich init-db  初始化数据库</p>
+<p>如果在使用的过程中发现需要更新数据库  先把对应的对象更新之后使用命令</p>
+<p>aerich migrate<br>然后会在mirations中的models文件夹中更生成一个.py文件，是对应的升级和降级的语句</p>
+<p>aerich upgrate  实现更新<br>aerich downgrate  实现倒退</p>
+<p>一张表映射的是一个类</p>
+<p>一个记录映射的是一个类的实例对象</p>
+<p>对应的代码和注释都在下面的代码块中</p>
+<p>Studen.py的处理内容，处理Studen这个表（增删盖查）</p>
+<pre><code class="python">from typing import List  
+  
+from fastapi import APIRouter, Response, Request,HTTPException  
+  
+from models import *  
+from pydantic import BaseModel, validator, field_validator  
+import re  
+  
+student_api = APIRouter()  
+from fastapi.templating import Jinja2Templates  
+  
+  
+# 查询所有学生信息  在tortoal orm下面必须要做异步支持   必须加上async 和  await@student_api.get(&#39;/index&#39;)  
+async def getallstugent(request: Request):  
+    templates = Jinja2Templates(directory=&#39;templates&#39;)  
+    # 1. 查询所有all方法  
+    students = await Studen.all()  # 拿到了这个studen这个表的全部值  返回的这个页面一直在刷新  
+    # for stu in students:  
+    #     print(stu.name,stu.sno,stu.clas_id)  
+    return templates.TemplateResponse(  
+        &#39;index.html&#39;,  
+        {  
+            &#39;request&#39;: request,  # 这个request这个参数一定要加上  
+            &#39;students&#39;: students  
+        }  
+    )  
+  
+    # 2. 过滤查询filter方法  
+    # students = await Studen.filter(name=&#39;rain&#39;)  # 拿到了这个studen这个表的全部值  
+    # # 这个方法返回的是一个类似于列表的类型  必须要从列表中提取出来  
+    # for stu in students:  
+    #     print(stu.name, stu.sno, stu.clas_id)    # return {}  
+    # 3. 单一查询get方法  
+    # stu = await Studen.get(name=&#39;rain&#39;)  # 拿到了这个studen这个表的全部值  
+    # # 这个方法返回的是一个模型类对象，直接可以对象拿到对应的属性值  
+    # print(stu.name, stu.sno, stu.clas_id)  
+    # return {}  
+    # 4。 模糊查询  
+    # stu=await  Studen.filter(sno__gt=202301)  # &gt;=202301  
+    # stu = await  Studen.filter(sno__in=[202301,202302]) # 在列表中的值  不是一个范围  
+    # stu = await  Studen.filter(sno__range=[1,1000]) # 是range范围中的值  返回的是一个列表  
+    # print(stu)  
+    # return {}  
+    # 5 values查询  
+    # stu = await  Studen.all().values(&#39;name&#39;,&#39;sno&#39;,&#39;clas_id&#39;)  
+    # return stu  
+  
+@student_api.get(&#39;/{student_id}&#39;)  # 查询学生id的信息  
+async def getallstugent(student_id: int):  
+    # 6 一对多查询和多对多查询  
+    stu = await Studen.get(id=student_id)  
+    print()  # 查询一个学生的id对应的名称  
+    name = await stu.clas.values(&#39;name&#39;)  
+    # student = await Studen.all().values(&#39;name&#39;, &#39;clas__name&#39;) # 查询所有学生对应id对应的名称  
+  
+    # 多对多的查询   单个的  
+    print(await stu.course.all().values(&#39;name&#39;, &#39;teacher__name&#39;))  
+    # 多对多的查询   多个的  
+    student = await Studen.all().values(&#39;name&#39;, &#39;clas__name&#39;, &#39;course__name&#39;)  # 查询所有学生对应id对应的名称  
+  
+    #  查到外键，并且要联合查询，要使用到  属性名__属性名 就查到外键的属性名了  
+  
+    # return student  
+    return name  
+  
+  
+class stu(BaseModel):  
+    name: str  
+    pwd: str  
+    sno: str  
+    clas_id: int  
+    course: List[int] = []  
+  
+    @field_validator(&#39;name&#39;)  
+    def name(cls, value):  
+        assert len(value) &lt;= 64, &quot;名字的长度不能超过64个字符&quot;  
+        return value  
+  
+    @field_validator(&#39;pwd&#39;)  
+    def pwd(cls, value):  
+        assert len(value) &lt;= 128, &quot;密码的长度不能超过128个字符&quot;  
+        return value  
+  
+    @field_validator(&#39;sno&#39;)  
+    def sno(cls, value):  
+        assert re.match(&quot;^2023[0-9][0-9]&quot;, value), &#39;学号格式不正确&#39;  
+        return value  
+  
+    # @field_validator(&#39;class_id&#39;)  
+    # async def class_id(cls, value):    #     flag = False    #     class_id = await Clas.all().values(&#39;id&#39;)    #     print(class_id)    #     for i in class_id:    #         if value == i.get(&#39;id&#39;):    #             flag = True    #     assert flag, &quot;这个id不存在&quot;  
+    #     return value    #  
+  
+@student_api.post(&#39;/&#39;)  # 上传学生信息  
+async def addstugent(stu_in: stu):  
+    # 传入到数据库中  
+    # 方式1：  
+    # student = Studen(name=stu_in.name, pwd=stu_in.pwd, sno=stu_in.sno, clas_id=stu_in.class_id)  
+    # await student.save()  # 这一个步骤是插入到数据库中  要实现异步操作  
+    # return {}  
+    #     方式2：  # 对数据库操作一定要加上await操作，不然会报错  
+    student = await Studen.create(name=stu_in.name, pwd=stu_in.pwd, sno=stu_in.sno, clas=stu_in.class_id)  
+  
+    # 绑定多对多的方法  
+    choose_courses = await Course.filter(id__in=stu_in.course)  
+    await student.course.add(*choose_courses)  
+  
+    return student  
+  
+  
+# 多对多的字段，添加和更细你都要单独来  
+@student_api.put(&#39;/{student_id}&#39;)  # 更新学生信息  
+async def upgradestugent(student_id: int, stu_in: stu):  
+    data = stu_in.dict()  
+    choose_course = data.pop(&#39;course&#39;)  # 这个返回的是  一个列表[]  
+    # await Studen.filter(id=student_id).update(name=stu_in.name, pwd=stu_in.pwd, sno=stu_in.sno, clas_id=stu_in.clas_id)   # 这里面的字段名完全是数据库中的  
+    await  Studen.filter(id=student_id).update(**data)  
+    print(type(choose_course))  
+    edit_stu = await Studen.get(id=student_id)  
+    await edit_stu.course.clear()  
+    choose_courses = await Course.filter(id__in=choose_course)  
+    await edit_stu.course.add(*choose_courses)  
+    return {}  
+  
+  
+@student_api.delete(&#39;/{student_id}&#39;)  
+async def deletstudent(student_id: int):  
+    delete_count = await Studen.filter(id=student_id).delete()  # 级联删除  
+    if not delete_count:  
+        raise HTTPException(status_code=404,detail=f&#39;id为{student_id}这个学生找不到&#39;)  
+    return {}
+</code></pre>
+<p>models.py这个文件，不同的类型对应着各个表</p>
+<pre><code class="python"># 选课系统  
+  
+from tortoise import fields  # 会把所有的字段放进去  
+from tortoise.models import Model  
+  
+  
+class Studen(Model):  
+    id = fields.IntField(pk=True)  
+    name = fields.CharField(max_length=64, description=&#39;姓名&#39;)  
+    pwd = fields.CharField(max_length=128, description=&#39;密码&#39;)  
+    sno = fields.CharField(max_length=64, description=&#39;学号&#39;, )  
+    # 一对多关系  
+    clas = fields.ForeignKeyField(&#39;models.Clas&#39;, related_name=&#39;students&#39;)  # 设置一个外键  
+    # related_name是一个反向查询的名称  
+  
+    # 多对多关系：  
+  
+    course = fields.ManyToManyField(&#39;models.Course&#39;, related_name=&#39;students&#39;)  
+  
+  
+class Clas(Model):  
+    name = fields.CharField(max_length=32, description=&#39;班级名称&#39;)  
+    id = fields.IntField(pk=True)  
+  
+  
+class Course(Model):  
+    id = fields.IntField(pk=True)  
+    name = fields.CharField(max_length=32, description=&#39;课程名称&#39;)  
+    teacher = fields.ForeignKeyField(&#39;models.Teacher&#39;, related_name=&#39;course&#39;)  
+    # addr = fields.CharField(max_length=100, description=&#39;教室地址&#39;, default=&#39; &#39;)  # 加上default是为了有些记录设置了不能为空  
+  
+  
+class Teacher(Model):  
+    id = fields.IntField(pk=True)  
+    name = fields.CharField(max_length=64, description=&#39;姓名&#39;)  
+    pwd = fields.CharField(max_length=128, description=&#39;密码&#39;)  
+    sno = fields.CharField(max_length=64, description=&#39;工号&#39;)
+</code></pre>
+<h4 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h4><p>所谓的中间件就是一个函数</p>
+<p>不是所有的中间件都有<code>请求代码块</code>和<code>响应代码块</code>  完整的是包含这两部分</p>
+<p><img src="/img/imgs/">Pasted image 20231114084929.png]]</p>
+<p><code>请求代码块</code> 只对请求数据做处理，就是在请求到达之后，还未到达路由函数时</p>
+<p>这个就是一个中间件</p>
+<pre><code class="python">@app.middleware(&#39;http&#39;)  
+async def m1(request: Request, call_next):  
+    print(&quot;请求代码快&quot;)  
+    response = await call_next(request)  
+    print(&#39;响应代码块&#39;)  
+    return response
+</code></pre>
+<p>CORS组件 （跨域   经过浏览器是能够正常的通过）</p>
+<p>同源请求：<br>跨域请求：</p>
+<p>主要是设置一个Access-Control-Allow-Origin这个字段</p>
+<p>Fastapi自带的有一个CORS<br><img src="/img/imgs/">Pasted image 20231114094150.png]]</p>
